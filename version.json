@@ -1,0 +1,6 @@
+{
+  "version": "1.2.0",
+  "releaseDate": "September 2026",
+  "releaseNotes": "HashScope v1.2.0: Zero-Trace Ephemeral Browsing, Per-Tab Isolated Tor/WireGuard/Burp Routing, Anti-Cloaking Device Emulation, Email Header & EML Dissector, and ISO/IEC 27037 Court-Admissible Chain-of-Custody Archive Generator.",
+  "downloadUrl": "https://github.com/tojo54/hashscope/releases"
+}

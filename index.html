@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashScope | Ephemeral, Per-Tab Isolated Threat Hunting Browser</title>
+  <meta name="description" content="HashScope is a zero-trace, per-tab isolated forensic web browser engineered for SOC threat hunters, incident responders, and cyber analysts. Architected by TOJO P THOMAS.">
+  <link rel="icon" type="image/x-icon" href="assets/logo.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Ambient Cyber Backdrop Elements -->
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="site-nav">
+    <div class="nav-container">
+      <a href="#" class="brand-wrapper">
+        <img src="assets/logo.png" alt="HashScope Logo" class="brand-logo-img">
+        <span class="brand-name">HASH<span>SCOPE</span></span>
+        <span class="brand-badge">v1.2.0</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#architecture">Architecture</a>
+        <a href="#simulator">Live Simulator</a>
+        <a href="#sandbox">IOC Defanger</a>
+        <a href="#triage">Triage Shelf</a>
+        <a href="#comparison">Forensic Audit</a>
+        <a href="#download">Downloads</a>
+        <a href="#creator">Architect</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#download" class="btn-nav-download">
+          <i class="fa-solid fa-download"></i> Get HashScope
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>Zero-Disk Footprint Enforced — Strict 10 MB RAM Partitioning</span>
+      </div>
+
+      <h1 class="hero-title">
+        Browse hostile infrastructure <br>
+        <span class="gradient-text">without leaving a single byte on disk.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Standard web browsers are designed to remember everything. <strong>HashScope</strong> is engineered to forget everything the millisecond a tab closes. Isolated per-tab Tor & WireGuard tunnels, anti-cloaking device emulation, and court-admissible evidence capture.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="downloads/HashScope-Setup-1.2.0.exe" class="btn-hero-primary">
+          <i class="fa-brands fa-windows"></i> Download Windows Installer (.exe)
+        </a>
+        <a href="downloads/HashScope-Portable-1.2.0.exe" class="btn-hero-secondary">
+          <i class="fa-solid fa-cube"></i> 1-File Portable (.exe)
+        </a>
+      </div>
+
+      <div class="hero-trust-row">
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> 0-Byte Disk Footprint</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> WebRTC UDP Leak Killswitch</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> ISO/IEC 27037 Evidence Chain</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> Free & Open Source</div>
+      </div>
+
+      <!-- ================= LIVE INTERACTIVE BROWSER STAGE ================= -->
+      <div class="browser-stage-wrapper" id="simulator">
+        <div class="browser-mock">
+          <!-- Window Title Bar -->
+          <div class="mock-titlebar">
+            <div class="mock-window-controls">
+              <span class="m-dot red"></span>
+              <span class="m-dot yellow"></span>
+              <span class="m-dot green"></span>
+            </div>
+
+            <!-- Tab Switcher Strip -->
+            <div class="mock-tabs" id="mockTabStrip">
+              <div class="mock-tab active" data-tab="tab-tor">
+                <span class="mock-tab-badge tor">🧅 TOR: 9050</span>
+                <span>Phishing C2 Lure</span>
+              </div>
+              <div class="mock-tab" data-tab="tab-vpn">
+                <span class="mock-tab-badge vpn">🛡️ VPN: 1080</span>
+                <span>Ransomware Leak Portal</span>
+              </div>
+              <div class="mock-tab" data-tab="tab-burp">
+                <span class="mock-tab-badge burp">🔍 BURP: 8080</span>
+                <span>Exploit Kit Intercept</span>
+              </div>
+              <div class="mock-tab" data-tab="tab-direct">
+                <span class="mock-tab-badge direct">⚡ DIRECT</span>
+                <span>OSINT Triangulation</span>
+              </div>
+            </div>
+
+            <!-- Header Telemetry Indicators -->
+            <div class="mock-telemetry">
+              <span class="telemetry-item" id="mockIpDisplay"><i class="fa-solid fa-globe text-cyan"></i> 185.220.101.5 (Tor Exit)</span>
+              <span class="telemetry-item"><i class="fa-solid fa-memory text-emerald"></i> RAM: 2.1 MB / 10 MB</span>
+            </div>
+          </div>
+
+          <!-- Omnibar & Forensic Controls -->
+          <div class="mock-omnibar-row">
+            <div style="display:flex; gap:6px;">
+              <button class="mock-nav-btn"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="mock-nav-btn"><i class="fa-solid fa-arrow-right"></i></button>
+              <button class="mock-nav-btn"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+
+            <div class="mock-omnibar">
+              <span class="mock-defang-tag" id="mockDefangBadge">DEFANGED</span>
+              <span class="mock-url-text" id="mockOmnibarUrl">hxxps[://]evil-credential-harvest[.]ru/auth/login.php?ref=soc</span>
+            </div>
+
+            <div class="mock-actions">
+              <button class="btn-mock-action" id="btnSimulateEvidence">
+                <i class="fa-solid fa-camera text-cyan"></i> Evidence
+              </button>
+              <button class="btn-mock-action text-red">
+                <i class="fa-solid fa-radiation"></i> Burn
+              </button>
+            </div>
+          </div>
+
+          <!-- Viewport Area -->
+          <div class="mock-viewport">
+            <div class="mock-grid-status">
+              <div class="mock-status-box">
+                <div class="mock-status-label"><span>Active Routing</span><i class="fa-solid fa-network-wired text-cyan"></i></div>
+                <div class="mock-status-val text-purple" id="mockRouteVal">Multi-Hop Onion Proxy</div>
+              </div>
+              <div class="mock-status-box">
+                <div class="mock-status-label"><span>Anti-Cloaking Viewport</span><i class="fa-solid fa-mobile-screen text-cyan"></i></div>
+                <div class="mock-status-val text-cyan" id="mockUaVal">Apple iPhone iOS (Safari)</div>
+              </div>
+              <div class="mock-status-box">
+                <div class="mock-status-label"><span>WebRTC Killswitch</span><i class="fa-solid fa-shield-halved text-emerald"></i></div>
+                <div class="mock-status-val text-emerald">NON-PROXIED UDP KILLED</div>
+              </div>
+              <div class="mock-status-box">
+                <div class="mock-status-label"><span>Disk Artifacts</span><i class="fa-solid fa-hard-drive text-emerald"></i></div>
+                <div class="mock-status-val text-emerald">0 BYTES WRITTEN</div>
+              </div>
+            </div>
+
+            <!-- Dynamic Investigation Intel Preview -->
+            <div class="mock-intel-shelf">
+              <div class="mock-intel-header">
+                <span><i class="fa-solid fa-microchip"></i> Live Partition Telemetry & Chain of Custody</span>
+                <span class="mono" style="font-size:11px; color:var(--text-dim);" id="mockTimestampUtc">2026-09-25T11:15:00Z</span>
+              </div>
+              <div class="mock-intel-log" id="mockIntelLog">
+                [00:00:01] In-memory session partition <code>tab_session_9050_tor</code> initialized.<br>
+                [00:00:02] Strict 10 MB RAM cache allocated. Disallowed SQLite history write, disk cookies, and crashpad.<br>
+                [00:00:03] Spoofed user-agent headers: <code>Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X)...</code><br>
+                [00:00:04] Threat actor cloaking bypassed: Phishing form payload decrypted and rendered in viewport.<br>
+                [00:00:05] Click 'Evidence' above to simulate cryptographic chain-of-custody archive generation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BENTO GRID ARCHITECTURE ================= -->
+    <section class="section" id="architecture">
+      <div class="section-head">
+        <span class="section-tag">ENGINEERED FOR CONTAINMENT</span>
+        <h2 class="section-title">Built from the ground up for high-threat investigations.</h2>
+        <p class="section-subtitle">
+          Commercial browsers continuously sync telemetry, write persistent crash reports to disk, and route all windows through a single IP. HashScope eliminates every vector of investigative leakage.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento 1: Per-Tab Isolation (8 cols) -->
+        <div class="bento-card bento-col-8">
+          <div>
+            <div class="bento-icon purple"><i class="fa-solid fa-network-wired"></i></div>
+            <h3>Concurrent Multi-Route Network Isolation</h3>
+            <p>
+              In traditional browsers, changing your proxy or enabling a VPN forces your entire machine through that single connection. HashScope binds dedicated, isolated network tunnels to individual tabs. Investigate a Tor darkweb market on Tab 1, an active ransomware C2 via WireGuard on Tab 2, and monitor open threat intelligence Direct on Tab 3 without proxy crosstalk.
+            </p>
+          </div>
+          <div class="bento-visual">
+            <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--font-mono); color:var(--text-secondary); margin-bottom:8px;">
+              <span>TAB #1: Tor (127.0.0.1:9050)</span>
+              <span class="text-purple">100% ISOLATED</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--font-mono); color:var(--text-secondary); margin-bottom:8px;">
+              <span>TAB #2: WireGuard Bridge (127.0.0.1:1080)</span>
+              <span class="text-emerald">100% ISOLATED</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--font-mono); color:var(--text-secondary);">
+              <span>TAB #3: Burp Suite (127.0.0.1:8080)</span>
+              <span class="text-amber">INTERCEPTING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 2: 0-Byte Footprint (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon cyan"><i class="fa-solid fa-memory"></i></div>
+            <h3>Strict 10 MB RAM Ceiling</h3>
+            <p>
+              Cookies, cache, DOM trees, and network responses are stored strictly in volatile memory. All Chromium SQLite disk caches, IndexedDB, and GPU crash logs are hard-disabled.
+            </p>
+          </div>
+          <div class="bento-visual" style="text-align:center;">
+            <div class="text-cyan" style="font-size:32px; font-weight:900; font-family:var(--font-mono);">0 BYTES</div>
+            <div style="font-size:11px; color:var(--text-muted);">Written to Disk on Session Close</div>
+          </div>
+        </div>
+
+        <!-- Bento 3: Anti-Cloaking Engine (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon emerald"><i class="fa-solid fa-mobile-screen"></i></div>
+            <h3>Anti-Cloaking Engine</h3>
+            <p>
+              Modern phishing campaigns inspect User-Agent and viewport dimensions to serve 404 pages to security researchers. Emulate Apple iPhone iOS, Android Samsung, or Googlebot with one click.
+            </p>
+          </div>
+          <div class="bento-visual">
+            <div style="font-size:11px; font-family:var(--font-mono); color:var(--cyan); line-height:1.6;">
+              ✓ Mobile Safari 17.4 Spoofed<br>
+              ✓ Touch Event Emulation Enabled<br>
+              ✓ Geolocation Spoofing Active
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 4: Evidence & Chain of Custody (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon amber"><i class="fa-solid fa-scale-balanced"></i></div>
+            <h3>ISO/IEC 27037 Evidence</h3>
+            <p>
+              Capture full-page lossless screenshots and rendered DOM snapshots with cryptographic SHA-256 integrity verification. Compiles a court-admissible custody manifest in seconds.
+            </p>
+          </div>
+          <div class="bento-visual">
+            <div style="font-size:10px; font-family:var(--font-mono); color:var(--text-secondary);">
+              <code>screenshot.png -> SHA-256</code><br>
+              <code>dom_snapshot.html -> SHA-256</code><br>
+              <code>CHAIN_OF_CUSTODY.json -> Verified</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 5: Emergency Burn (4 cols) -->
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon crimson"><i class="fa-solid fa-radiation"></i></div>
+            <h3>Emergency Nuke & Burn</h3>
+            <p>
+              Instantly zero-out all volatile memory buffers, close partition webviews, and kill the application process cleanly without leaving trace artifacts in unallocated memory.
+            </p>
+          </div>
+          <div class="bento-visual" style="text-align:center;">
+            <span class="mono text-red" style="font-size:12px; font-weight:700;"><i class="fa-solid fa-fire"></i> Instant Process Purge</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTERACTIVE IOC DEFANGER SANDBOX ================= -->
+    <section class="section" id="sandbox" style="padding-top:0;">
+      <div class="section-head">
+        <span class="section-tag">LIVE UTILITY SANDBOX</span>
+        <h2 class="section-title">Test the In-Browser IOC Defanger</h2>
+        <p class="section-subtitle">
+          Safely neutralize suspicious URLs, IPs, and email lures before sharing them in Slack, Jira, or incident documentation.
+        </p>
+      </div>
+
+      <div class="sandbox-card">
+        <div class="sandbox-presets">
+          <span style="font-size:12px; color:var(--text-muted); align-self:center;">Try Presets:</span>
+          <button class="btn-preset" data-sample="https://secure-login.chase-verification-alert.ru/auth?token=892">Phishing Kit URL</button>
+          <button class="btn-preset" data-sample="http://185.220.101.5:8080/stage2_payload.exe">Malware C2 Stager</button>
+          <button class="btn-preset" data-sample="admin@compromised-host-mail.com">Email Lure</button>
+        </div>
+
+        <div class="sandbox-input-box">
+          <input type="text" class="sandbox-input" id="sandboxInput" value="https://secure-login.chase-verification-alert.ru/auth?token=892" placeholder="Paste malicious URL or IP address...">
+          <button class="btn-sandbox-run" id="btnRunDefang"><i class="fa-solid fa-code"></i> Defang</button>
+          <button class="btn-sandbox-run" id="btnRunRefang" style="background:var(--bg-card); color:#fff; border:1px solid var(--border-subtle);"><i class="fa-solid fa-rotate-left"></i> Refang</button>
+        </div>
+
+        <div class="sandbox-output-box">
+          <div>
+            <div style="font-size:10px; text-transform:uppercase; color:var(--text-muted); margin-bottom:3px; font-weight:700;">Safe Defanged IOC:</div>
+            <div class="sandbox-output-text" id="sandboxOutput">hxxps[://]secure-login[.]chase-verification-alert[.]ru/auth?token=892</div>
+          </div>
+          <button class="btn-copy-sandbox" id="btnCopySandbox">
+            <i class="fa-regular fa-copy"></i> Copy IOC
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INTERACTIVE FORENSIC TRIAGE SHELF ================= -->
+    <section class="section" id="triage">
+      <div class="section-head">
+        <span class="section-tag">ANALYST DECISION MEMORY</span>
+        <h2 class="section-title">Built-In Forensic Triage Command Shelf</h2>
+        <p class="section-subtitle">
+          Curated commands for rapid incident containment across Windows and Linux. Available instantly inside HashScope's drawer.
+        </p>
+      </div>
+
+      <div class="terminal-card">
+        <div class="terminal-tabs">
+          <button class="t-tab-btn active" data-cmdset="windows">Windows Incident Triage</button>
+          <button class="t-tab-btn" data-cmdset="linux">Linux Incident Triage</button>
+          <button class="t-tab-btn" data-cmdset="eventlog">Event Log Hunting (4625 / 4688 / 1102 / 4761)</button>
+        </div>
+
+        <div class="terminal-body" id="triageCommandsList">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FORENSIC COMPARISON MATRIX ================= -->
+    <section class="section" id="comparison">
+      <div class="section-head">
+        <span class="section-tag">UNBIASED BENCHMARK</span>
+        <h2 class="section-title">Standard Browser vs. HashScope</h2>
+        <p class="section-subtitle">
+          Why standard incognito or private browsing modes fail standard digital forensics and OPSEC requirements.
+        </p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Forensic & OPSEC Property</th>
+              <th>Standard Chrome / Edge</th>
+              <th>Private / Incognito Mode</th>
+              <th class="col-highlight">HashScope Forensic Browser</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Disk Caches & SQLite Databases</strong></td>
+              <td class="text-bad">1.2+ GB written across profile</td>
+              <td class="text-bad">Writes crashpad, GPU, and temp files</td>
+              <td class="col-highlight text-good">0 Bytes (Strict 10 MB RAM cap)</td>
+            </tr>
+            <tr>
+              <td><strong>Per-Tab Proxy Routing Concurrency</strong></td>
+              <td class="text-bad">No (Whole OS proxy only)</td>
+              <td class="text-bad">No (Whole OS proxy only)</td>
+              <td class="col-highlight text-good">Yes (Tor, VPN, Burp per-tab)</td>
+            </tr>
+            <tr>
+              <td><strong>WebRTC UDP Real IP Leakage</strong></td>
+              <td class="text-bad">Leaks local & VPN IPv4/IPv6</td>
+              <td class="text-bad">Leaks local & VPN IPv4/IPv6</td>
+              <td class="col-highlight text-good">Blocked (disable_non_proxied_udp)</td>
+            </tr>
+            <tr>
+              <td><strong>Anti-Cloaking Device Emulation</strong></td>
+              <td class="text-bad">Manual DevTools required</td>
+              <td class="text-bad">Manual DevTools required</td>
+              <td class="col-highlight text-good">1-Click iPhone, Android, Googlebot</td>
+            </tr>
+            <tr>
+              <td><strong>Email Header & EML Dissector</strong></td>
+              <td class="text-bad">None (Requires 3rd-party websites)</td>
+              <td class="text-bad">None (Requires 3rd-party websites)</td>
+              <td class="col-highlight text-good">Built-in (SPF, DKIM, DMARC, hops)</td>
+            </tr>
+            <tr>
+              <td><strong>Evidence Chain-of-Custody Manifest</strong></td>
+              <td class="text-bad">None</td>
+              <td class="text-bad">None</td>
+              <td class="col-highlight text-good">ISO/IEC 27037 SHA-256 ZIP</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= DOWNLOAD HUB ================= -->
+    <section class="section" id="download">
+      <div class="section-head">
+        <span class="section-tag">DEPLOYMENT PACKAGES</span>
+        <h2 class="section-title">Download HashScope for Your Environment</h2>
+        <p class="section-subtitle">
+          Download the Windows Desktop Installer, the 1-File Portable edition, or standalone packages for your lab.
+        </p>
+      </div>
+
+      <div class="downloads-grid">
+        <!-- Windows Package -->
+        <div class="dl-card highlight">
+          <span class="dl-tag-featured">MOST POPULAR</span>
+          <div class="dl-icon"><i class="fa-brands fa-windows"></i></div>
+          <h3>Microsoft Windows</h3>
+          <p>Compatible with Windows 11, Windows 10, and Windows Server (64-bit). Full installer or 1-file portable executable.</p>
+          <div class="dl-btn-stack">
+            <a href="downloads/HashScope-Setup-1.2.0.exe" class="btn-dl-item primary">
+              <span><i class="fa-solid fa-download"></i> Windows Installer (.exe)</span>
+              <span class="mono">80.5 MB</span>
+            </a>
+            <a href="downloads/HashScope-Portable-1.2.0.exe" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-box"></i> 1-File Portable (.exe)</span>
+              <span class="mono">80.2 MB</span>
+            </a>
+            <a href="downloads/HashScope-Portable-1.2.0.zip" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-file-zipper"></i> Portable Zip Archive</span>
+              <span class="mono">115 MB</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Linux / Kali Package -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-linux"></i></div>
+          <h3>Linux / Kali / Ubuntu</h3>
+          <p>Native 64-bit binary packages for Kali Linux, Ubuntu, Debian, and Arch digital forensic workstations.</p>
+          <div class="dl-btn-stack">
+            <a href="downloads/hashscope-1.2.0.tar.gz" class="btn-dl-item primary">
+              <span><i class="fa-solid fa-file-archive"></i> Linux Package (.tar.gz)</span>
+              <span class="mono">103 MB</span>
+            </a>
+            <a href="downloads/hashscope-1.2.0.zip" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-file-zipper"></i> Linux Standalone (.zip)</span>
+              <span class="mono">103 MB</span>
+            </a>
+            <a href="downloads/linux-guide.md" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-terminal"></i> Kali/Debian .DEB Guide</span>
+              <span class="mono">npm run build:linux</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- macOS Package -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-apple"></i></div>
+          <h3>Apple macOS (.DMG)</h3>
+          <p>Native macOS package supporting Apple Silicon (M1/M2/M3/M4) and Intel x64 architectures.</p>
+          <div class="dl-btn-stack">
+            <a href="downloads/mac-build-guide.md" class="btn-dl-item primary">
+              <span><i class="fa-solid fa-apple-whole"></i> macOS Build & CI Guide</span>
+              <span class="mono">GitHub Actions</span>
+            </a>
+            <a href="#github-ci" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-cloud-arrow-down"></i> 1-Click Multi-OS CI</span>
+              <span class="mono">Automated .DMG</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Android Play Store Package -->
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-google-play"></i></div>
+          <h3>Android Threat Hunting</h3>
+          <p>Mobile security investigation edition for field analysts and smartphone threat analysis.</p>
+          <div class="dl-btn-stack">
+            <a href="playstore-publishing-guide.md" class="btn-dl-item primary">
+              <span><i class="fa-brands fa-google-play"></i> Google Play Store Guide</span>
+              <span class="mono">Publishing Docs</span>
+            </a>
+            <a href="downloads/HashScope-Mobile.apk" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-robot"></i> Direct APK Package</span>
+              <span class="mono">v1.2.0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cryptographic Checksum Card -->
+      <div class="checksum-card">
+        <div class="checksum-header">
+          <span><i class="fa-solid fa-shield-check text-cyan"></i> Official Release Checksums (SHA-256)</span>
+          <span class="mono" style="font-size:11px; color:var(--emerald);">Cryptographically Verified</span>
+        </div>
+        <div class="checksum-row">
+          <div>
+            <strong>HashScope-Setup-1.2.0.exe:</strong>
+            <span class="checksum-val">B2387F497D96F37752F2BC2B8F12614950306A9DE6E9BCB425E9A4F163BACC1F</span>
+          </div>
+          <button class="btn-copy-sandbox btn-copy-hash-val" data-val="B2387F497D96F37752F2BC2B8F12614950306A9DE6E9BCB425E9A4F163BACC1F"><i class="fa-regular fa-copy"></i></button>
+        </div>
+        <div class="checksum-row">
+          <div>
+            <strong>HashScope-Portable-1.2.0.exe:</strong>
+            <span class="checksum-val">1E1A190D8A80F78C5E7B15E45E6B223044CEB99E59D8874E743C15B816368B70</span>
+          </div>
+          <button class="btn-copy-sandbox btn-copy-hash-val" data-val="1E1A190D8A80F78C5E7B15E45E6B223044CEB99E59D8874E743C15B816368B70"><i class="fa-regular fa-copy"></i></button>
+        </div>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:10px;">
+          Verify in Windows PowerShell: <code>Get-FileHash HashScope-Setup-1.2.0.exe -Algorithm SHA256</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ARCHITECT & RESEARCHER PROFILE ================= -->
+    <section class="section" id="creator">
+      <div class="creator-card">
+        <div class="creator-img-wrap">
+          <img src="assets/logo-256.png" alt="TOJO P THOMAS">
+        </div>
+        <div class="creator-details">
+          <h2>TOJO P THOMAS</h2>
+          <div class="creator-role">Cyber Forensic Analyst | Investigator | Researcher</div>
+          <p class="creator-bio">
+            "In modern digital forensics, an analyst's investigative environment must never become a participant in the crime scene. HashScope was engineered to establish an absolute boundary between hostile web infrastructure and the investigator's local workstation."
+          </p>
+          <div class="creator-links-row">
+            <a href="https://medium.com/@tojopthomas" target="_blank" class="btn-creator-link">
+              <i class="fa-brands fa-medium"></i> Read Articles on Medium: @tojopthomas
+            </a>
+            <a href="#download" class="btn-creator-link">
+              <i class="fa-solid fa-download"></i> Get HashScope v1.2.0
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="HashScope Logo" style="width:28px; height:28px;">
+        <span style="font-weight:700; color:#fff;">HashScope Browser</span>
+        <span class="brand-badge">Official Release Hub</span>
+      </div>
+
+      <div class="footer-links">
+        <a href="#architecture">Architecture</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#sandbox">IOC Defanger</a>
+        <a href="#triage">Triage Shelf</a>
+        <a href="#download">Downloads</a>
+        <a href="https://medium.com/@tojopthomas" target="_blank">Medium Publications</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      HashScope Forensic Browser © 2026 TOJO P THOMAS. Released as Free & Open Source Software for the global SOC and digital forensics community.
+    </div>
+  </footer>
+
+  <!-- ================= INTERACTIVE SCRIPT ================= -->
+  <script>
+    // 1. Live Interactive Browser Simulator Logic
+    const tabData = {
+      'tab-tor': {
+        route: 'Multi-Hop Onion Proxy (9050)',
+        routeColor: '#c084fc',
+        ua: 'Apple iPhone iOS (Safari)',
+        ip: '185.220.101.5 (Tor Exit Germany)',
+        url: 'hxxps[://]evil-credential-harvest[.]ru/auth/login.php?ref=soc',
+        log: '[00:00:01] SOCKS5 Tor stream active on port 9050.<br>[00:00:02] Spoofed user-agent headers: iOS Safari 17.4.<br>[00:00:03] Phishing credential harvest form intercepted and defanged.<br>[00:00:04] 0 bytes written to disk.'
+      },
+      'tab-vpn': {
+        route: 'WireGuard Tunnel Bridge (1080)',
+        routeColor: '#34d399',
+        ua: 'Android Samsung S24 (Chrome)',
+        ip: '194.26.29.112 (Stockholm Tunnel)',
+        url: 'hxxps[://]lockbit-leak-portal[.]su/files/victim-dump.tar',
+        log: '[00:00:01] User-space WireGuard proxy tunnel active on 127.0.0.1:1080.<br>[00:00:02] Entire host OS network untouched; only this tab routes via VPN.<br>[00:00:03] RFC 8828 WebRTC killswitch enforced.<br>[00:00:04] Zero trace footprint active.'
+      },
+      'tab-burp': {
+        route: 'Burp Suite Proxy (8080)',
+        routeColor: '#fbbf24',
+        ua: 'Googlebot Crawler 2.1',
+        ip: '127.0.0.1:8080 (Local Intercept)',
+        url: 'hxxp[://]exploit-kit-gate[.]net/payload.js',
+        log: '[00:00:01] Upstream proxy redirected to 127.0.0.1:8080.<br>[00:00:02] JavaScript execution frozen to safely capture de-obfuscated stager.<br>[00:00:03] Intercepted 3 HTTP POST beacons to C2 domain.<br>[00:00:04] Ready for evidence export.'
+      },
+      'tab-direct': {
+        route: 'Direct ISP (Host Adapter)',
+        routeColor: '#38bdf8',
+        ua: 'Clean Forensic Chromium (x64)',
+        ip: '116.68.96.9 (Host IP Verified)',
+        url: 'https://virustotal.com/gui/domain/evil-credential-harvest.ru',
+        log: '[00:00:01] Direct ISP network adapter attached.<br>[00:00:02] DNS-over-HTTPS (DoH) resolved via Cloudflare 1.1.1.1.<br>[00:00:03] Passive OSINT WHOIS and SSL certificate fingerprints evaluated.<br>[00:00:04] Ready for analyst pivoting.'
+      }
+    };
+
+    document.querySelectorAll('.mock-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.mock-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const key = tab.dataset.tab;
+        const d = tabData[key];
+        if (d) {
+          document.getElementById('mockRouteVal').textContent = d.route;
+          document.getElementById('mockRouteVal').style.color = d.routeColor;
+          document.getElementById('mockUaVal').textContent = d.ua;
+          document.getElementById('mockIpDisplay').innerHTML = `<i class="fa-solid fa-globe text-cyan"></i> ${d.ip}`;
+          document.getElementById('mockOmnibarUrl').textContent = d.url;
+          document.getElementById('mockIntelLog').innerHTML = d.log;
+        }
+      });
+    });
+
+    // Simulate Evidence Generation
+    const btnSimulateEvidence = document.getElementById('btnSimulateEvidence');
+    if (btnSimulateEvidence) {
+      btnSimulateEvidence.addEventListener('click', () => {
+        btnSimulateEvidence.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Hashing...';
+        setTimeout(() => {
+          btnSimulateEvidence.innerHTML = '<i class="fa-solid fa-check text-green"></i> Captured!';
+          document.getElementById('mockIntelLog').innerHTML = `
+            <span style="color:var(--emerald); font-weight:700;">[EVIDENCE ARCHIVE GENERATED (ISO/IEC 27037)]</span><br>
+            ✓ Lossless Screenshot SHA-256: <code>a8f4c28e932b1...</code><br>
+            ✓ Rendered DOM SHA-256: <code>e3b0c44298fc1c...</code><br>
+            ✓ Evidence ZIP Package SHA-256: <code>719b22a0df82...</code><br>
+            ✓ Immutable Chain-of-Custody Manifest created in 100% volatile memory.
+          `;
+          setTimeout(() => {
+            btnSimulateEvidence.innerHTML = '<i class="fa-solid fa-camera text-cyan"></i> Evidence';
+          }, 3000);
+        }, 500);
+      });
+    }
+
+    // 2. IOC Defanger Sandbox Logic
+    function defang(str) {
+      return str
+        .replace(/^https?:\/\//i, (m) => m.toLowerCase().startsWith('https') ? 'hxxps[://]' : 'hxxp[://]')
+        .replace(/\./g, '[.]')
+        .replace(/@/g, '[@]');
+    }
+
+    function refang(str) {
+      return str
+        .replace(/hxxps\[:\/\/\]/gi, 'https://')
+        .replace(/hxxp\[:\/\/\]/gi, 'http://')
+        .replace(/\[\.\]/g, '.')
+        .replace(/\[@\]/g, '@');
+    }
+
+    const sandboxInput = document.getElementById('sandboxInput');
+    const sandboxOutput = document.getElementById('sandboxOutput');
+    const btnRunDefang = document.getElementById('btnRunDefang');
+    const btnRunRefang = document.getElementById('btnRunRefang');
+    const btnCopySandbox = document.getElementById('btnCopySandbox');
+
+    btnRunDefang.addEventListener('click', () => {
+      sandboxOutput.textContent = defang(sandboxInput.value);
+    });
+
+    btnRunRefang.addEventListener('click', () => {
+      sandboxOutput.textContent = refang(sandboxInput.value);
+    });
+
+    document.querySelectorAll('.btn-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sandboxInput.value = btn.dataset.sample;
+        sandboxOutput.textContent = defang(btn.dataset.sample);
+      });
+    });
+
+    btnCopySandbox.addEventListener('click', () => {
+      navigator.clipboard.writeText(sandboxOutput.textContent);
+      const original = btnCopySandbox.innerHTML;
+      btnCopySandbox.innerHTML = '<i class="fa-solid fa-check text-green"></i> Copied!';
+      setTimeout(() => { btnCopySandbox.innerHTML = original; }, 1500);
+    });
+
+    // 3. Triage Terminal Shelf Logic
+    const triageData = {
+      windows: [
+        { desc: 'Active Network Sockets & Connected Foreign PIDs', cmd: 'netstat -ano | findstr ESTABLISHED', inspect: 'Look for unexpected outbound connections to foreign public IPs.' },
+        { desc: 'Process Execution with Full Command Line Arguments', cmd: 'Get-CimInstance Win32_Process | Select-Object ProcessId, CommandLine', inspect: 'Inspect base64-encoded powershell (-enc) or certutil downloading payloads.' },
+        { desc: 'Inspect Scheduled Tasks for Persistence', cmd: 'Get-ScheduledTask | Where-Object { $_.State -ne "Disabled" }', inspect: 'Examine tasks executing from C:\\Users\\Public or C:\\ProgramData.' },
+        { desc: 'Inspect Failed Authentication (Brute Force Hunting)', cmd: 'Get-WinEvent -FilterHashtable @{LogName=\'Security\';ID=4625} -MaxEvents 50', inspect: 'Target account names, source IP addresses, and failure status codes.' }
+      ],
+      linux: [
+        { desc: 'Listening Sockets with Associated Process Executables', cmd: 'ss -tulpn', inspect: 'Check for unauthorized ports bound to 0.0.0.0.' },
+        { desc: 'Active Process Tree with Hierarchy & Arguments', cmd: 'ps auxf', inspect: 'Identify spawned bash reverse shells beneath web servers (www-data).' },
+        { desc: 'User Crontab Persistence Audit', cmd: 'for u in $(cut -f1 -d: /etc/passwd); do crontab -u $u -l 2>/dev/null; done', inspect: 'Look for curl or python one-liners scheduled at boot or hourly.' },
+        { desc: 'Recently Modified Executables in Temporary Folders', cmd: 'find /tmp /var/tmp /dev/shm -type f -mtime -3', inspect: 'Threat actors commonly drop initial stagers in world-writable paths.' }
+      ],
+      eventlog: [
+        { desc: 'Event ID 4625 — An account failed to log on', cmd: 'Get-WinEvent -FilterHashtable @{LogName=\'Security\';ID=4625}', inspect: 'Distinguishes between bad passwords (0xC000006A) and non-existent users.' },
+        { desc: 'Event ID 4688 — A new process has been created', cmd: 'Get-WinEvent -FilterHashtable @{LogName=\'Security\';ID=4688}', inspect: 'Requires Process Command Line Auditing enabled in GPO.' },
+        { desc: 'Event ID 1102 — The audit log was cleared', cmd: 'Get-WinEvent -FilterHashtable @{LogName=\'Security\';ID=1102}', inspect: 'High-severity indicator of attacker anti-forensics / log tampering.' },
+        { desc: 'Event ID 4761 — Account Member Added to Security Enabled Local Group', cmd: 'Get-WinEvent -FilterHashtable @{LogName=\'Security\';ID=4761}', inspect: 'Privilege escalation: inspect which user was elevated to local Administrators.' }
+      ]
+    };
+
+    function renderTriageShelf(setKey) {
+      const list = triageData[setKey] || [];
+      const container = document.getElementById('triageCommandsList');
+      let html = '';
+      list.forEach(item => {
+        html += `
+          <div class="terminal-cmd-row">
+            <div style="flex:1;">
+              <div class="terminal-cmd-desc"><strong>${item.desc}</strong> — ${item.inspect}</div>
+              <div class="terminal-cmd-code"><code>${item.cmd}</code></div>
+            </div>
+            <button class="btn-copy-cmd" data-cmd="${item.cmd}" title="Copy Command">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    document.querySelectorAll('.t-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.t-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTriageShelf(btn.dataset.cmdset);
+      });
+    });
+
+    renderTriageShelf('windows');
+
+    // Global Copy Handler
+    document.addEventListener('click', (e) => {
+      const btnCmd = e.target.closest('.btn-copy-cmd');
+      if (btnCmd && btnCmd.dataset.cmd) {
+        navigator.clipboard.writeText(btnCmd.dataset.cmd);
+        const original = btnCmd.innerHTML;
+        btnCmd.innerHTML = '<i class="fa-solid fa-check text-green"></i>';
+        setTimeout(() => { btnCmd.innerHTML = original; }, 1500);
+      }
+
+      const btnHash = e.target.closest('.btn-copy-hash-val');
+      if (btnHash && btnHash.dataset.val) {
+        navigator.clipboard.writeText(btnHash.dataset.val);
+        const original = btnHash.innerHTML;
+        btnHash.innerHTML = '<i class="fa-solid fa-check text-green"></i>';
+        setTimeout(() => { btnHash.innerHTML = original; }, 1500);
+      }
+    });
+  </script>
+</body>
+</html>

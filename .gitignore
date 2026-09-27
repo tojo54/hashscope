@@ -1,0 +1,10 @@
+# Ignore files exceeding GitHub's 100MB single-file limit
+downloads/*.zip
+downloads/*.tar.gz
+downloads/*.AppImage
+downloads/*.deb
+downloads/*.dmg
+
+# OS Files
+.DS_Store
+Thumbs.db
