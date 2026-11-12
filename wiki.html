@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forensic Wiki &amp; Investigator Field Manual | HashScope WebTrace &amp; HashScope</title>
+  <meta name="description" content="Official Digital Forensics Wiki for HashScope WebTrace v2.4.0 (Free Browsing History Analysis Tool) and HashScope Browser. Browser artifact locations, deleted SQLite history carving, timestamp conversion formulas, and court report guide by TOJO P THOMAS.">
+  <meta name="keywords" content="HashScope Wiki, HashScope WebTrace Wiki, browser history location guide, Chrome history path, Firefox places.sqlite, Safari History.db, IE WebCacheV01.dat, recover deleted browser history, SQLite WAL carving, WebKit timestamp formula, PRTime, Cocoa CoreData timestamp, TOJO P THOMAS">
+  <link rel="icon" type="image/x-icon" href="assets/logo.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .wiki-layout {
+      max-width: 1320px;
+      margin: 110px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .wiki-layout { grid-template-columns: 1fr; }
+    }
+    .wiki-sidebar {
+      position: sticky;
+      top: 96px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 22px;
+      backdrop-filter: blur(12px);
+    }
+    .wiki-sidebar h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wiki-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .wiki-nav-list a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .wiki-nav-list a:hover, .wiki-nav-list a.active {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38bdf8;
+      border-left: 3px solid #38bdf8;
+    }
+    .wiki-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .wiki-card {
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 16px;
+      padding: 32px;
+      scroll-margin-top: 96px;
+    }
+    .wiki-card h1, .wiki-card h2 {
+      color: #f8fafc;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .wiki-card h3 {
+      color: #38bdf8;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    .wiki-card p, .wiki-card li {
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+    .wiki-card code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(2, 6, 23, 0.75);
+      color: #38bdf8;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.84rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    .wiki-table-wrap {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    .wiki-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .wiki-table th, .wiki-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      text-align: left;
+      color: #e2e8f0;
+    }
+    .wiki-table th {
+      background: rgba(2, 6, 23, 0.65);
+      color: #38bdf8;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+    }
+    .wiki-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.16);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- TOP NAVIGATION -->
+  <header class="site-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="assets/logo.png" alt="HashScope Logo" class="brand-logo-img">
+        <span class="brand-name">HASH<span>SCOPE</span></span>
+        <span class="brand-badge">WIKI</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="index.html#webtrace" style="color:#38bdf8; font-weight:700;"><i class="fa-solid fa-magnifying-glass-chart"></i> WebTrace v2.4.0</a>
+        <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Forensic Wiki</a>
+        <a href="https://github.com/tojo54/hashscope/wiki" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Wiki</a>
+        <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" rel="noopener"><i class="fa-solid fa-code-branch"></i> WebTrace Repo</a>
+        <a href="index.html#download">Downloads</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-nav-download">
+          <i class="fa-solid fa-download"></i> Get WebTrace v2.4.0
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wiki-layout">
+    <!-- SIDEBAR -->
+    <aside class="wiki-sidebar">
+      <h3><i class="fa-solid fa-book-open"></i> Wiki Contents</h3>
+      <ul class="wiki-nav-list">
+        <li><a href="#wiki-home" class="active"><i class="fa-solid fa-compass"></i> 1. Ecosystem Overview</a></li>
+        <li><a href="#wiki-webtrace"><i class="fa-solid fa-table-cells"></i> 2. WebTrace 14+ Artifact Matrix</a></li>
+        <li><a href="#wiki-locations"><i class="fa-solid fa-folder-tree"></i> 3. Browser History Locations</a></li>
+        <li><a href="#wiki-carving"><i class="fa-solid fa-microchip"></i> 4. Deleted History Carving</a></li>
+        <li><a href="#wiki-viewers"><i class="fa-solid fa-clock-rotate-left"></i> 5. Viewers &amp; Time Zones</a></li>
+        <li><a href="#wiki-acquisition"><i class="fa-solid fa-scale-balanced"></i> 6. Acquisition &amp; Court Reports</a></li>
+      </ul>
+
+      <h3><i class="fa-solid fa-link"></i> Official Mirrors</h3>
+      <ul class="wiki-nav-list">
+        <li><a href="https://github.com/tojo54/hashscope/wiki" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Wiki Portal</a></li>
+        <li><a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/tree/main/wiki" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i> WebTrace Repo /wiki</a></li>
+        <li><a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/releases/tag/v2.4.0" target="_blank" rel="noopener"><i class="fa-solid fa-box-open"></i> Release v2.4.0 Binaries</a></li>
+        <li><a href="https://medium.com/@tojopthomas" target="_blank" rel="noopener"><i class="fa-brands fa-medium"></i> TOJO P THOMAS</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN WIKI CONTENT -->
+    <main class="wiki-content">
+
+      <!-- SECTION 1: OVERVIEW -->
+      <article class="wiki-card" id="wiki-home">
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+          <span class="wiki-badge">OFFICIAL DFIR WIKI</span>
+          <span class="wiki-badge" style="background:rgba(56,189,248,0.16); color:#38bdf8; border-color:rgba(56,189,248,0.35);">HashScope WebTrace v2.4.0 + HashScope v1.2.0</span>
+        </div>
+        <h1><i class="fa-solid fa-shield-halved text-cyan"></i> HashScope &amp; HashScope WebTrace Forensic Wiki</h1>
+        <p>
+          Architected by <strong><a href="https://medium.com/@tojopthomas" target="_blank" rel="noopener" style="color:#38bdf8;">TOJO P THOMAS</a></strong> <em>(Cyber Forensic Analyst | Investigator | Researcher)</em>, the HashScope ecosystem provides two complementary open-source forensic platforms for SOC Analysts, Digital Forensic Investigators, Law Enforcement, and Incident Responders:
+        </p>
+        <ul>
+          <li><strong><a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" rel="noopener" style="color:#38bdf8;">HashScope WebTrace v2.4.0</a> (Browser History &amp; Artifact Examiner):</strong> Extracts, carves, timelines, and reports on <strong>14+ browser artifact types</strong> across <strong>Chrome, Firefox, Edge, Safari, IE 10/11, Tor Browser, Brave, Opera, and Vivaldi</strong> on Windows, macOS, and Linux in both <strong>Portable</strong> and <strong>Installer</strong> modes.</li>
+          <li><strong><a href="https://github.com/tojo54/hashscope" target="_blank" rel="noopener" style="color:#38bdf8;">HashScope Browser v1.2.0</a> (Zero-Trace Threat Hunting Browser):</strong> Enforces a strict 10 MB volatile RAM ceiling (0-byte disk footprint) with per-tab Tor/WireGuard/Burp isolation and ISO/IEC 27037 evidence capture.</li>
+        </ul>
+
+        <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:20px;">
+          <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-hero-primary" style="padding:10px 18px; font-size:0.88rem;">
+            <i class="fa-brands fa-windows"></i> Download WebTrace Setup.exe
+          </a>
+          <a href="downloads/HashScope-WebTrace-Portable.exe" class="btn-hero-secondary" style="padding:10px 18px; font-size:0.88rem; border-color:#38bdf8; color:#38bdf8;">
+            <i class="fa-solid fa-usb"></i> Download WebTrace Portable.exe
+          </a>
+          <a href="https://github.com/tojo54/hashscope/wiki" target="_blank" rel="noopener" class="btn-hero-secondary" style="padding:10px 18px; font-size:0.88rem;">
+            <i class="fa-brands fa-github"></i> Open on GitHub Wiki
+          </a>
+        </div>
+      </article>
+
+      <!-- SECTION 2: 14+ ARTIFACT MATRIX -->
+      <article class="wiki-card" id="wiki-webtrace">
+        <h2><i class="fa-solid fa-magnifying-glass-chart text-cyan"></i> HashScope WebTrace v2.4.0 — Complete 14+ Artifact Support Matrix</h2>
+        <p>
+          <strong>HashScope WebTrace</strong> combines the visual correlation depth of <em>Foxton Forensics Browser History Examiner</em> with the rapid portable execution of <em>NirSoft Web Browser Tools</em>. Every evidence file is copied to an isolated read-only buffer and hashed with <code>SHA-256</code> and <code>MD5</code> before examination.
+        </p>
+        <div class="wiki-table-wrap">
+          <table class="wiki-table">
+            <thead>
+              <tr>
+                <th>Forensic Artifact Category</th>
+                <th>Chrome</th>
+                <th>Firefox</th>
+                <th>Edge</th>
+                <th>IE 10/11</th>
+                <th>Safari</th>
+                <th>Tor</th>
+                <th>Brave / Opera / Vivaldi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1. Website Visits &amp; Transition Types</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>2. Website Visits Interactive Timeline</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>3. Search History (Engines, Social, Shopping)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>4. Downloads &amp; Redirect URL Chains</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>5. Cookies &amp; Session Tokens</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>6. Cached Files (Disk Cache Headers)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>7. Cached Image Gallery (Thumbnails)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>8. Cached Web Page Viewer (Sandboxed)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>9. Bookmarks &amp; Reading Lists</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>10. Logins (Account Metadata &amp; Timestamps)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>11. Form History / Autofill</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>12. Favicons &amp; Icon Mappings</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>13. Thumbnails (Top Sites)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>14. Session Data (SNSS / mozLz4)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>15. Browser Settings (Preferences / prefs.js)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>16. Site Permissions (Camera, Mic, Location)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>17. Site Storage (LocalStorage / IndexedDB)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>18. Extracted Email Addresses &amp; Threat Filter</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+              <tr><td><strong>19. Deleted History Recovery (WAL / Freelist / VSS)</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- SECTION 3: BROWSER HISTORY LOCATIONS -->
+      <article class="wiki-card" id="wiki-locations">
+        <h2><i class="fa-solid fa-folder-tree text-cyan"></i> Forensic Browser History &amp; Artifact Locations Encyclopedia</h2>
+        <p>Default file system paths scanned automatically by <strong>HashScope WebTrace</strong> across Windows, macOS, and Linux:</p>
+
+        <h3><i class="fa-brands fa-chrome"></i> Google Chrome &amp; Chromium</h3>
+        <ul>
+          <li><strong>Windows:</strong> <code>%LOCALAPPDATA%\Google\Chrome\User Data\&lt;Profile&gt;\</code></li>
+          <li><strong>macOS:</strong> <code>~/Library/Application Support/Google/Chrome/&lt;Profile&gt;/</code></li>
+          <li><strong>Linux:</strong> <code>~/.config/google-chrome/&lt;Profile&gt;/</code></li>
+          <li><strong>Artifacts:</strong> <code>History</code>, <code>Network/Cookies</code>, <code>Bookmarks</code>, <code>Login Data</code>, <code>Web Data</code>, <code>Favicons</code>, <code>Top Sites</code>, <code>Sessions/Session_*</code>, <code>Preferences</code>, <code>Cache/Cache_Data/</code></li>
+        </ul>
+
+        <h3><i class="fa-brands fa-edge"></i> Microsoft Edge</h3>
+        <ul>
+          <li><strong>Windows:</strong> <code>%LOCALAPPDATA%\Microsoft\Edge\User Data\&lt;Profile&gt;\</code></li>
+          <li><strong>macOS:</strong> <code>~/Library/Application Support/Microsoft Edge/&lt;Profile&gt;/</code></li>
+          <li><strong>Linux:</strong> <code>~/.config/microsoft-edge/&lt;Profile&gt;/</code></li>
+        </ul>
+
+        <h3><i class="fa-brands fa-firefox-browser"></i> Mozilla Firefox &amp; Tor Browser</h3>
+        <ul>
+          <li><strong>Windows:</strong> <code>%APPDATA%\Mozilla\Firefox\Profiles\*.default-release\</code></li>
+          <li><strong>macOS:</strong> <code>~/Library/Application Support/Firefox/Profiles/*.default-release/</code></li>
+          <li><strong>Linux:</strong> <code>~/.mozilla/firefox/*.default-release/</code></li>
+          <li><strong>Tor Browser:</strong> <code>Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\</code></li>
+          <li><strong>Artifacts:</strong> <code>places.sqlite</code>, <code>cookies.sqlite</code>, <code>formhistory.sqlite</code>, <code>favicons.sqlite</code>, <code>logins.json</code>, <code>sessionstore.jsonlz4</code>, <code>prefs.js</code>, <code>permissions.sqlite</code>, <code>cache2/entries/</code></li>
+        </ul>
+
+        <h3><i class="fa-brands fa-safari"></i> Apple Safari</h3>
+        <ul>
+          <li><strong>macOS:</strong> <code>~/Library/Safari/History.db</code>, <code>Bookmarks.plist</code>, <code>Downloads.plist</code>, <code>LastSession.plist</code>, <code>PerSitePreferences.db</code>, <code>~/Library/Cookies/Cookies.binarycookies</code></li>
+        </ul>
+
+        <h3><i class="fa-brands fa-internet-explorer"></i> Microsoft Internet Explorer 10 / 11 &amp; Legacy Edge</h3>
+        <ul>
+          <li><strong>Windows ESENT Database:</strong> <code>%LOCALAPPDATA%\Microsoft\Windows\WebCache\WebCacheV01.dat</code>, <code>%LOCALAPPDATA%\Microsoft\Windows\INetCache\</code>, <code>%USERPROFILE%\Favorites\</code></li>
+        </ul>
+      </article>
+
+      <!-- SECTION 4: DELETED HISTORY CARVING -->
+      <article class="wiki-card" id="wiki-carving">
+        <h2><i class="fa-solid fa-microchip text-cyan"></i> Deleted History Recovery &amp; Unallocated SQLite Carving</h2>
+        <p>When a suspect clears browsing history or deletes individual visits, <strong>HashScope WebTrace</strong> recovers deleted artifacts from four independent forensic layers:</p>
+        <ol>
+          <li><strong>SQLite Unallocated Freelist &amp; Cell Freeblocks:</strong> Scans raw B-Tree leaf pages (<code>0x0D</code>) and unallocated freelist pages inside <code>History</code>, <code>places.sqlite</code>, <code>Cookies</code>, and <code>Web Data</code> for purged URL records and adjacent 64-bit timestamps, reporting exact hexadecimal byte offsets (<code>0x...</code>).</li>
+          <li><strong>SQLite Write-Ahead Logs (<code>.sqlite-wal</code>) &amp; Rollback Journals (<code>-journal</code>):</strong> Carves historical WAL frames that still contain pre-deletion snapshots of rows deleted prior to checkpointing.</li>
+          <li><strong>Windows Volume Shadow Copies (<code>VSS</code>):</strong> Enumerates <code>\\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy*</code> snapshots to recover historical browser profiles wiped by privacy cleaners.</li>
+          <li><strong>Residual Cross-Artifact Correlation:</strong> Extracts lingering domain and URL evidence from <code>Favicons</code> (<code>icon_mapping</code>), <code>Cache_Data</code>, and <code>Shortcuts</code> databases even after primary history tables are vacuumed.</li>
+        </ol>
+      </article>
+
+      <!-- SECTION 5: VIEWERS & TIMESTAMPS -->
+      <article class="wiki-card" id="wiki-viewers">
+        <h2><i class="fa-solid fa-clock-rotate-left text-cyan"></i> Built-In Forensic Viewers &amp; Timestamp Conversion Reference</h2>
+        <p>
+          <strong>HashScope WebTrace</strong> includes built-in viewers for <strong>Website Visits Timeline</strong>, <strong>Sandboxed Offline Cached Web Page Viewer</strong>, <strong>Cached Image Gallery</strong>, <strong>JSON Tree Viewer</strong>, <strong>Apple Binary <code>bplist00</code> PLIST Viewer</strong>, and a <strong>16-Byte Hex / ASCII Evidence Inspector</strong>.
+        </p>
+        <p>All native browser epochs are normalized to UTC and dynamically converted to your selected <strong>Time Zone &amp; Daylight Saving Time (DST)</strong> profile:</p>
+        <div class="wiki-table-wrap">
+          <table class="wiki-table">
+            <thead>
+              <tr>
+                <th>Browser Engine</th>
+                <th>Timestamp Format</th>
+                <th>Epoch Origin (0)</th>
+                <th>Precision</th>
+                <th>Conversion to Unix Epoch (Seconds)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Chrome / Edge / Brave / Opera / Vivaldi</strong></td>
+                <td>WebKit / Chromium Int64</td>
+                <td><code>1601-01-01 00:00:00 UTC</code></td>
+                <td>Microseconds (10⁻⁶ s)</td>
+                <td><code>(WebKit / 1,000,000) - 11,644,473,600</code></td>
+              </tr>
+              <tr>
+                <td><strong>Mozilla Firefox / Tor Browser</strong></td>
+                <td>PRTime Int64</td>
+                <td><code>1970-01-01 00:00:00 UTC</code></td>
+                <td>Microseconds (10⁻⁶ s)</td>
+                <td><code>PRTime / 1,000,000</code></td>
+              </tr>
+              <tr>
+                <td><strong>Apple Safari (macOS / iOS)</strong></td>
+                <td>Cocoa CoreData Float64</td>
+                <td><code>2001-01-01 00:00:00 UTC</code></td>
+                <td>Seconds (1 s)</td>
+                <td><code>Cocoa + 978,307,200</code></td>
+              </tr>
+              <tr>
+                <td><strong>Internet Explorer 10/11 (WebCacheV01.dat)</strong></td>
+                <td>Windows FILETIME UInt64</td>
+                <td><code>1601-01-01 00:00:00 UTC</code></td>
+                <td>100-Nanoseconds (10⁻⁷ s)</td>
+                <td><code>(FILETIME / 10,000,000) - 11,644,473,600</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- SECTION 6: ACQUISITION & COURT REPORTS -->
+      <article class="wiki-card" id="wiki-acquisition">
+        <h2><i class="fa-solid fa-scale-balanced text-cyan"></i> 4 Acquisition Modes &amp; Court-Admissible Report Builder</h2>
+        <ul>
+          <li><strong>1. Local Live Triage:</strong> Enumerates all installed browsers on the live workstation, safely bypassing OS file locks via read-only shadow staging.</li>
+          <li><strong>2. External Drive / Mounted Forensic Image:</strong> Point at any mounted drive or forensic image (<code>E01</code>, <code>VHDX</code>, <code>RAW</code>) to scan all user profiles across Windows, macOS, or Linux partitions.</li>
+          <li><strong>3. Remote Network Computer Capture:</strong> Acquire browser artifacts over administrative SMB shares (<code>\\TARGET-PC\C$\Users\...</code>).</li>
+          <li><strong>4. Manual Artifact File Loader:</strong> Inspect standalone SQLite, JSON, <code>.plist</code>, <code>sessionstore.jsonlz4</code>, or <code>WebCacheV01.dat</code> files.</li>
+          <li><strong>Court-Admissible Exports:</strong> Generate <strong>Printable PDF / Forensic HTML Reports</strong>, <strong>Excel Workbooks (<code>.xlsx</code>)</strong>, <strong>CSV (<code>.csv</code>)</strong>, and <strong>JSON Evidence Packages (<code>.json</code>)</strong> complete with <code>SHA-256</code> and <code>MD5</code> Chain-of-Custody manifests.</li>
+        </ul>
+      </article>
+
+    </main>
+  </div>
+
+</body>
+</html>

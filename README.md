@@ -12,6 +12,7 @@
 
 ## 🌐 Official Web Portal & Downloads
 - **Live Portal**: [https://hashscope.in/](https://hashscope.in/) | [https://tojo54.github.io/hashscope/](https://tojo54.github.io/hashscope/)
+- **Interactive Forensic Wiki**: [https://hashscope.in/wiki.html](https://hashscope.in/wiki.html) | **GitHub Wiki**: [https://github.com/tojo54/hashscope/wiki](https://github.com/tojo54/hashscope/wiki)
 - **HashScope WebTrace v2.4.0 (Free Browsing History Analysis & Browser Artifact Examiner)**: [https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis)
 - **Creator Publications**: [https://medium.com/@tojopthomas](https://medium.com/@tojopthomas)
 
