@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HashScope | Ephemeral, Per-Tab Isolated Threat Hunting Browser</title>
-  <meta name="description" content="HashScope is a zero-trace, per-tab isolated forensic web browser engineered for SOC threat hunters, incident responders, and cyber analysts. Architected by TOJO P THOMAS.">
+  <title>HashScope &amp; HashScope WebTrace | Threat Hunting Browser &amp; Free Browsing History Analysis Tool</title>
+  <meta name="description" content="HashScope Forensic Browser &amp; HashScope WebTrace (Free Browsing History Analysis &amp; Digital Forensic Browser History Examiner for Chrome, Firefox, Edge, Safari, Tor &amp; IE 10/11). Architected by TOJO P THOMAS.">
+  <meta name="keywords" content="free browsing history analysis, browsing history analysis, browser history examiner, HashScope WebTrace, HashScope, digital forensics, DFIR, recover deleted browser history, SQLite WAL carver, cached web page viewer, PLIST viewer, JSON viewer, Chrome Firefox Edge Safari Tor IE history analyzer, TOJO P THOMAS">
   <link rel="icon" type="image/x-icon" href="assets/logo.ico">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -28,6 +29,7 @@
       </a>
 
       <nav class="nav-links">
+        <a href="#webtrace" style="color:#38bdf8; font-weight:700;"><i class="fa-solid fa-magnifying-glass-chart"></i> WebTrace Examiner</a>
         <a href="#architecture">Architecture</a>
         <a href="#simulator">Live Simulator</a>
         <a href="#sandbox">IOC Defanger</a>
@@ -64,10 +66,13 @@
 
       <div class="hero-cta-group">
         <a href="downloads/HashScope-Setup-1.2.0.exe" class="btn-hero-primary">
-          <i class="fa-brands fa-windows"></i> Download Windows Installer (.exe)
+          <i class="fa-brands fa-windows"></i> Download HashScope Browser (.exe)
         </a>
         <a href="downloads/HashScope-Portable-1.2.0.exe" class="btn-hero-secondary">
           <i class="fa-solid fa-cube"></i> 1-File Portable (.exe)
+        </a>
+        <a href="#webtrace" class="btn-hero-secondary" style="border-color:#38bdf8; color:#38bdf8;">
+          <i class="fa-solid fa-magnifying-glass-chart"></i> HashScope WebTrace v2.4.0 (History Examiner)
         </a>
       </div>
 
@@ -403,6 +408,92 @@
       </div>
     </section>
 
+    <!-- ================= HASHSCOPE WEBTRACE: BROWSING HISTORY ANALYSIS SUITE ================= -->
+    <section class="section" id="webtrace">
+      <div class="section-head">
+        <span class="section-tag">NEW RELEASE • HASHSCOPE WEBTRACE v2.4.0</span>
+        <h2 class="section-title">HashScope WebTrace — Free Browsing History Analysis &amp; Forensic Examiner</h2>
+        <p class="section-subtitle">
+          A complete multi-OS digital forensic browser artifact analysis tool for Windows, macOS, and Linux (Portable &amp; Installer editions). Extract, carve, timeline, and report on <strong>14+ browser artifact types</strong> across <strong>Chrome, Firefox, Edge, IE 10/11, Safari, Tor Browser, Brave, Opera, and Vivaldi</strong> in strict read-only SHA-256 verified mode.
+        </p>
+      </div>
+
+      <div class="bento-grid" style="margin-bottom:32px;">
+        <!-- WebTrace Bento 1: 14+ Artifact Categories -->
+        <div class="bento-card bento-col-8">
+          <div>
+            <div class="bento-icon cyan"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h3>14+ Browser Forensic Data Types Across All Major Browsers</h3>
+            <p>
+              Automatically discovers and parses SQLite databases (<code>History</code>, <code>places.sqlite</code>, <code>History.db</code>, <code>WebCacheV01.dat</code>, <code>Cookies</code>, <code>Web Data</code>, <code>Login Data</code>, <code>Favicons</code>), JSON configurations, Apple binary/XML <code>.plist</code> files, and browser cache streams from Local Systems, External Drives, Remote Network Shares (<code>\\Host\C$</code>), or Manual Evidence Folders.
+            </p>
+          </div>
+          <div class="bento-visual">
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; font-size:11px; font-family:var(--font-mono); color:var(--text-secondary);">
+              <span>✓ Website Visits &amp; Timeline</span>
+              <span>✓ Deleted History (WAL/VSS)</span>
+              <span>✓ Cached Web Page Viewer</span>
+              <span>✓ Cached Image Gallery</span>
+              <span>✓ Searches &amp; Extracted Emails</span>
+              <span>✓ URL Category &amp; Risk Filter</span>
+              <span>✓ Bookmarks &amp; Favicons</span>
+              <span>✓ Cookies &amp; Logins Metadata</span>
+              <span>✓ Downloads &amp; Form History</span>
+              <span>✓ Session Tabs (SNSS/mozLz4)</span>
+              <span>✓ Site Settings &amp; Storage</span>
+              <span>✓ Built-in JSON &amp; PLIST Viewer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WebTrace Bento 2: Deleted History & Time Zone Engine -->
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon purple"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <h3>Deleted History Carving &amp; Time Zone / DST</h3>
+            <p>
+              Carves deleted URLs and search queries from SQLite Write-Ahead Logs (<code>-wal</code>), Rollback Journals, Unallocated Freelist Pages, and Windows Volume Shadow Copies (VSS). Converts WebKit (1601), PRTime (1970), Safari CoreData (2001), and FILETIME epochs into any IANA Time Zone with automatic DST rules.
+            </p>
+          </div>
+          <div class="bento-visual" style="text-align:center;">
+            <div class="text-purple" style="font-size:20px; font-weight:900; font-family:var(--font-mono);">WAL + FREELIST + VSS</div>
+            <div style="font-size:11px; color:var(--text-muted);">Unallocated Binary Record Carving &amp; PDF/XLSX/CSV/HTML Report Builder</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WebTrace Direct Download & GitHub Release Card -->
+      <div class="dl-card highlight" style="max-width:100%; margin-bottom:16px;">
+        <span class="dl-tag-featured">FREE BROWSING HISTORY ANALYSIS TOOL • v2.4.0</span>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+          <div style="flex:1; min-width:280px;">
+            <h3 style="font-size:22px; margin-bottom:8px;"><i class="fa-solid fa-shield-halved text-cyan"></i> Download HashScope WebTrace v2.4.0</h3>
+            <p style="margin-bottom:12px;">
+              Available as a 100% self-contained Windows Setup Installer (<code>.exe</code>), a zero-install 1-File Windows Portable executable (<code>.exe</code>), and a macOS/Linux Portable bundle (<code>.run</code>).
+            </p>
+            <div style="font-size:12px; font-family:var(--font-mono); color:var(--text-secondary);">
+              GitHub Repository: <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" style="color:#38bdf8; text-decoration:underline;">github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis</a>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-hero-primary" style="padding:12px 18px; font-size:13px;">
+              <i class="fa-brands fa-windows"></i> WebTrace Installer (.exe)
+            </a>
+            <a href="downloads/HashScope-WebTrace-Portable.exe" class="btn-hero-secondary" style="padding:12px 18px; font-size:13px;">
+              <i class="fa-solid fa-box"></i> WebTrace Portable (.exe)
+            </a>
+            <a href="downloads/HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run" class="btn-hero-secondary" style="padding:12px 18px; font-size:13px;">
+              <i class="fa-brands fa-linux"></i> macOS / Linux (.run)
+            </a>
+            <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" class="btn-hero-secondary" style="padding:12px 18px; font-size:13px; border-color:#38bdf8; color:#38bdf8;">
+              <i class="fa-brands fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= DOWNLOAD HUB ================= -->
     <section class="section" id="download">
       <div class="section-head">
@@ -512,6 +603,20 @@
           </div>
           <button class="btn-copy-sandbox btn-copy-hash-val" data-val="1E1A190D8A80F78C5E7B15E45E6B223044CEB99E59D8874E743C15B816368B70"><i class="fa-regular fa-copy"></i></button>
         </div>
+        <div class="checksum-row">
+          <div>
+            <strong>HashScope-WebTrace-Setup.exe (v2.4.0):</strong>
+            <span class="checksum-val">CE50C09943E46DC0AA4333A9B6D4BE933BE10FBE54C1E39197809BDB1D0F9EAB</span>
+          </div>
+          <button class="btn-copy-sandbox btn-copy-hash-val" data-val="CE50C09943E46DC0AA4333A9B6D4BE933BE10FBE54C1E39197809BDB1D0F9EAB"><i class="fa-regular fa-copy"></i></button>
+        </div>
+        <div class="checksum-row">
+          <div>
+            <strong>HashScope-WebTrace-Portable.exe (v2.4.0):</strong>
+            <span class="checksum-val">D9EF78E4350448E72AB5714177DBCE59501072CFF00DD3557548B10B26073E58</span>
+          </div>
+          <button class="btn-copy-sandbox btn-copy-hash-val" data-val="D9EF78E4350448E72AB5714177DBCE59501072CFF00DD3557548B10B26073E58"><i class="fa-regular fa-copy"></i></button>
+        </div>
         <div style="font-size:11px; color:var(--text-muted); margin-top:10px;">
           Verify in Windows PowerShell: <code>Get-FileHash HashScope-Setup-1.2.0.exe -Algorithm SHA256</code>
         </div>
@@ -534,6 +639,9 @@
             <a href="https://medium.com/@tojopthomas" target="_blank" class="btn-creator-link">
               <i class="fa-brands fa-medium"></i> Read Articles on Medium: @tojopthomas
             </a>
+            <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" class="btn-creator-link">
+              <i class="fa-brands fa-github"></i> HashScope WebTrace (History Examiner)
+            </a>
             <a href="#download" class="btn-creator-link">
               <i class="fa-solid fa-download"></i> Get HashScope v1.2.0
             </a>
@@ -548,16 +656,18 @@
     <div class="footer-container">
       <div class="footer-brand">
         <img src="assets/logo.png" alt="HashScope Logo" style="width:28px; height:28px;">
-        <span style="font-weight:700; color:#fff;">HashScope Browser</span>
+        <span style="font-weight:700; color:#fff;">HashScope &amp; WebTrace</span>
         <span class="brand-badge">Official Release Hub</span>
       </div>
 
       <div class="footer-links">
+        <a href="#webtrace">WebTrace Examiner</a>
         <a href="#architecture">Architecture</a>
         <a href="#simulator">Simulator</a>
         <a href="#sandbox">IOC Defanger</a>
         <a href="#triage">Triage Shelf</a>
         <a href="#download">Downloads</a>
+        <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank">WebTrace GitHub</a>
         <a href="https://medium.com/@tojopthomas" target="_blank">Medium Publications</a>
       </div>
     </div>

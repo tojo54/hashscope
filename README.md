@@ -11,9 +11,27 @@
 ---
 
 ## 🌐 Official Web Portal & Downloads
-- **Live Portal**: [https://tojo54.github.io/hashscope/](https://tojo54.github.io/hashscope/)
-- **Custom Domain**: [http://hashscope.in/](http://hashscope.in/)
+- **Live Portal**: [https://hashscope.in/](https://hashscope.in/) | [https://tojo54.github.io/hashscope/](https://tojo54.github.io/hashscope/)
+- **HashScope WebTrace v2.4.0 (Free Browsing History Analysis & Browser Artifact Examiner)**: [https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis)
 - **Creator Publications**: [https://medium.com/@tojopthomas](https://medium.com/@tojopthomas)
+
+---
+
+## 🔬 NEW: HashScope WebTrace v2.4.0 — Free Browsing History Analysis & Digital Forensic Browser Examiner
+
+**Official Repository & Releases:** [**github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis**](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis)
+
+**HashScope WebTrace** is a standalone cross-platform digital forensics workstation designed to extract, carve, correlate, and analyze **14+ browser artifact types** across **Google Chrome, Mozilla Firefox, Microsoft Edge, Apple Safari, Internet Explorer 10/11 (ESENT `WebCacheV01.dat`), Tor Browser, Brave, Opera, and Vivaldi** on **Windows, macOS, and Linux** in both **Portable** and **Installer** modes.
+
+- **14+ Forensic Artifact Categories**: Website Visits, Website Visits Timeline, Searches, Downloads, Cookies, Cached Files, Cached Image Gallery, Cached Web Page Viewer, Bookmarks, Logins (Metadata), Form History, Favicons, Thumbnails, Session Data (`SNSS` / `mozLz4`), Browser Settings, Site Settings, Site Storage, Extracted Email Addresses, and URL Category Threat Filter.
+- **Deleted History Recovery**: Carves unallocated SQLite Freelist pages, Write-Ahead Logs (`.sqlite-wal`), Rollback Journals, and Windows Volume Shadow Copies (`VSS`).
+- **Built-in Forensic Viewers**: Hex / Binary Inspector, JSON Tree Viewer, Apple Binary/XML `bplist00` PLIST Viewer, Time Zone & DST Engine (WebKit, PRTime, Cocoa CoreData, Windows FILETIME, Unix Epoch), and Court-Admissible PDF / XLSX / CSV / HTML / JSON Report Builder with SHA-256 & MD5 Chain-of-Custody Verification.
+
+| Package | Direct Download (`hashscope.in`) | GitHub Release | SHA-256 Checksum |
+| :--- | :--- | :--- | :--- |
+| **Windows Installer (`Setup.exe`)** | [`HashScope-WebTrace-Setup.exe`](https://hashscope.in/downloads/HashScope-WebTrace-Setup.exe) | [v2.4.0 Release](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/releases/tag/v2.4.0) | `CE50C09943E46DC0AA4333A9B6D4BE933BE10FBE54C1E39197809BDB1D0F9EAB` |
+| **Windows Portable (`Portable.exe`)** | [`HashScope-WebTrace-Portable.exe`](https://hashscope.in/downloads/HashScope-WebTrace-Portable.exe) | [v2.4.0 Release](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/releases/tag/v2.4.0) | `D9EF78E4350448E72AB5714177DBCE59501072CFF00DD3557548B10B26073E58` |
+| **macOS & Linux Portable (`.run`)** | [`HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run`](https://hashscope.in/downloads/HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run) | [v2.4.0 Release](https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/releases/tag/v2.4.0) | `92BE585796E928496C23E21729CF2548BC25DA7F57B5617EAA5F453E37DCBF21` |
 
 ---
 
