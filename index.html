@@ -22,27 +22,84 @@
   <!-- ================= TOP NAVIGATION ================= -->
   <header class="site-nav">
     <div class="nav-container">
-      <a href="#" class="brand-wrapper">
+      <a href="index.html" class="brand-wrapper">
         <img src="assets/logo.png" alt="HashScope Logo" class="brand-logo-img">
         <span class="brand-name">HASH<span>SCOPE</span></span>
-        <span class="brand-badge">v1.2.0</span>
+        <span class="brand-badge">DFIR SUITE</span>
       </a>
 
       <nav class="nav-links">
-        <a href="#webtrace" style="color:#38bdf8; font-weight:700;"><i class="fa-solid fa-magnifying-glass-chart"></i> WebTrace Examiner</a>
-        <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Forensic Wiki</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#simulator">Live Simulator</a>
+        <a href="index.html" style="color:#fff; font-weight:700;"><i class="fa-solid fa-house"></i> Home</a>
+
+        <!-- FORENSIC TOOLS DROPDOWN MENU -->
+        <div class="nav-dropdown" id="forensicToolsDropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> Forensic Tools <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-header">HashScope DFIR Software Suite</div>
+
+            <a href="browser.html" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  1. HashScope Browser <span class="nav-tool-badge">v1.2.0</span>
+                </div>
+                <div class="nav-dropdown-desc">Zero-Trace, 10 MB RAM Per-Tab Isolated Threat Hunting &amp; OSINT Web Browser</div>
+              </div>
+            </a>
+
+            <a href="webtrace.html" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon emerald"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  2. HashScope WebTrace <span class="nav-tool-badge new">v2.4.0 NEW</span>
+                </div>
+                <div class="nav-dropdown-desc">Free Browsing History Analysis &amp; 14+ Artifact Examiner (Chrome, Firefox, Edge, Safari, IE, Tor)</div>
+              </div>
+            </a>
+
+            <div class="nav-dropdown-header" style="margin-top:6px;">Upcoming Forensic Tools (R&amp;D)</div>
+
+            <a href="#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon amber"><i class="fa-solid fa-hard-drive"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  3. HashScope DiskCarve <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Unallocated Cluster &amp; File Signature Forensic Recovery Engine</div>
+              </div>
+            </a>
+
+            <a href="#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon purple"><i class="fa-solid fa-memory"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  4. HashScope MemTrace <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Volatile RAM Dump &amp; Process Injection Triage Analyzer</div>
+              </div>
+            </a>
+
+            <a href="#tools-directory" class="nav-dropdown-item" style="margin-top:4px; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+              <div class="nav-dropdown-info" style="text-align:center; color:var(--cyan); font-size:12px; font-weight:700;">
+                <i class="fa-solid fa-layer-group"></i> View All Forensic Suite Products &rarr;
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#simulator">Simulator</a>
         <a href="#sandbox">IOC Defanger</a>
         <a href="#triage">Triage Shelf</a>
-        <a href="#comparison">Forensic Audit</a>
+        <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Forensic Wiki</a>
         <a href="#download">Downloads</a>
         <a href="#creator">Architect</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="#download" class="btn-nav-download">
-          <i class="fa-solid fa-download"></i> Get HashScope
+        <a href="#tools-directory" class="btn-nav-download">
+          <i class="fa-solid fa-layer-group"></i> Explore Suite
         </a>
       </div>
     </div>
@@ -53,35 +110,35 @@
     <section class="hero">
       <div class="hero-pill">
         <span class="pulse-dot"></span>
-        <span>Zero-Disk Footprint Enforced — Strict 10 MB RAM Partitioning</span>
+        <span>UNIFIED DIGITAL FORENSICS &amp; INCIDENT RESPONSE (DFIR) SOFTWARE SUITE</span>
       </div>
 
       <h1 class="hero-title">
-        Browse hostile infrastructure <br>
-        <span class="gradient-text">without leaving a single byte on disk.</span>
+        Browse hostile infrastructure &amp; investigate <br>
+        <span class="gradient-text">digital evidence with court-grade precision.</span>
       </h1>
 
       <p class="hero-desc">
-        Standard web browsers are designed to remember everything. <strong>HashScope</strong> is engineered to forget everything the millisecond a tab closes. Isolated per-tab Tor & WireGuard tunnels, anti-cloaking device emulation, and court-admissible evidence capture.
+        Architected by <strong>TOJO P THOMAS</strong> <em>(Cyber Forensic Analyst | Investigator | Researcher)</em>. Home of <strong>Tool 01: HashScope Browser v1.2.0</strong> (Zero-Trace Per-Tab Threat Hunting Browser) and <strong>Tool 02: HashScope WebTrace v2.4.0</strong> (Free Browsing History Analysis &amp; 14+ Artifact Examiner).
       </p>
 
       <div class="hero-cta-group">
-        <a href="downloads/HashScope-Setup-1.2.0.exe" class="btn-hero-primary">
-          <i class="fa-brands fa-windows"></i> Download HashScope Browser (.exe)
+        <a href="browser.html" class="btn-hero-primary">
+          <i class="fa-solid fa-shield-halved"></i> Tool 01: HashScope Browser (v1.2.0)
         </a>
-        <a href="downloads/HashScope-Portable-1.2.0.exe" class="btn-hero-secondary">
-          <i class="fa-solid fa-cube"></i> 1-File Portable (.exe)
+        <a href="webtrace.html" class="btn-hero-secondary" style="border-color:#10b981; color:#34d399;">
+          <i class="fa-solid fa-magnifying-glass-chart"></i> Tool 02: HashScope WebTrace (v2.4.0)
         </a>
-        <a href="#webtrace" class="btn-hero-secondary" style="border-color:#38bdf8; color:#38bdf8;">
-          <i class="fa-solid fa-magnifying-glass-chart"></i> HashScope WebTrace v2.4.0 (History Examiner)
+        <a href="#download" class="btn-hero-secondary">
+          <i class="fa-solid fa-download"></i> All Downloads &amp; Checksums
         </a>
       </div>
 
       <div class="hero-trust-row">
-        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> 0-Byte Disk Footprint</div>
-        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> WebRTC UDP Leak Killswitch</div>
-        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> ISO/IEC 27037 Evidence Chain</div>
-        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> Free & Open Source</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> 0-Byte Disk Footprint Browser</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> 14+ Browser Artifact History Examiner</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> SQLite WAL / Freelist / VSS Deleted Carving</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> ISO/IEC 27037 &amp; SHA-256 Chain of Custody</div>
       </div>
 
       <!-- ================= LIVE INTERACTIVE BROWSER STAGE ================= -->
@@ -180,6 +237,121 @@
                 [00:00:05] Click 'Evidence' above to simulate cryptographic chain-of-custody archive generation.
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FORENSIC SOFTWARE SUITE DIRECTORY ================= -->
+    <section class="section" id="tools-directory">
+      <div class="section-head">
+        <span class="section-tag">MODULAR DIGITAL FORENSICS ECOSYSTEM</span>
+        <h2 class="section-title">HashScope Forensic Tools Directory</h2>
+        <p class="section-subtitle">
+          Select any tool from the suite below or from the top <strong>Forensic Tools</strong> menu to open its dedicated product page, technical specifications, and verified downloads.
+        </p>
+      </div>
+
+      <div class="suite-grid">
+        <!-- Tool 01: HashScope Browser -->
+        <div class="suite-card">
+          <div>
+            <div class="suite-card-top">
+              <span class="suite-num">TOOL 01 • STABLE v1.2.0</span>
+              <span style="font-size:12px; color:var(--text-muted); font-family:var(--font-mono);">Windows &amp; Linux</span>
+            </div>
+            <h3><i class="fa-solid fa-shield-halved text-cyan"></i> HashScope Browser</h3>
+            <p>
+              Zero-Trace, Per-Tab Isolated Threat Hunting &amp; Digital Forensics Web Browser. Enforces a strict 10 MB volatile RAM ceiling (0-byte disk footprint) with per-tab Tor/WireGuard/Burp routing, anti-cloaking emulation, Email/Event Log analyzers, and ISO/IEC 27037 evidence capture.
+            </p>
+            <div class="suite-spec-list">
+              <span>✓ 0-Byte Disk Footprint</span>
+              <span>✓ Per-Tab Tor / VPN / Burp</span>
+              <span>✓ Anti-Cloaking Emulation</span>
+              <span>✓ Email &amp; Event ID Dissector</span>
+              <span>✓ WebRTC UDP Leak Block</span>
+              <span>✓ ISO/IEC 27037 Evidence ZIP</span>
+            </div>
+          </div>
+          <div class="suite-actions">
+            <a href="browser.html" class="btn-hero-primary" style="padding:11px 18px; font-size:13px;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Product Page
+            </a>
+            <a href="downloads/HashScope-Setup-1.2.0.exe" class="btn-hero-secondary" style="padding:11px 16px; font-size:13px;">
+              <i class="fa-brands fa-windows"></i> Setup (.exe)
+            </a>
+            <a href="downloads/HashScope-Portable-1.2.0.exe" class="btn-hero-secondary" style="padding:11px 16px; font-size:13px;">
+              <i class="fa-solid fa-cube"></i> Portable (.exe)
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 02: HashScope WebTrace -->
+        <div class="suite-card featured-emerald" style="border-color:rgba(16,185,129,0.28);">
+          <div>
+            <div class="suite-card-top">
+              <span class="suite-num" style="color:#34d399; border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.12);">TOOL 02 • NEW RELEASE v2.4.0</span>
+              <span style="font-size:12px; color:var(--text-muted); font-family:var(--font-mono);">Windows, macOS &amp; Linux</span>
+            </div>
+            <h3><i class="fa-solid fa-magnifying-glass-chart text-emerald"></i> HashScope WebTrace</h3>
+            <p>
+              Free Browsing History Analysis &amp; Digital Forensic Browser Artifact Examiner. Extracts, carves, timelines, and reports on <strong>14+ browser artifact types</strong> across <strong>Chrome, Firefox, Edge, IE 10/11, Safari, Tor, Brave, Opera, and Vivaldi</strong> in Portable and Installer modes.
+            </p>
+            <div class="suite-spec-list">
+              <span>✓ 14+ Browser Data Types</span>
+              <span>✓ SQLite WAL/Freelist/VSS Carver</span>
+              <span>✓ Cached Web Page &amp; Image Viewer</span>
+              <span>✓ Built-in JSON &amp; PLIST Viewer</span>
+              <span>✓ Time Zone &amp; DST Conversion</span>
+              <span>✓ PDF / XLSX / CSV / HTML Reports</span>
+            </div>
+          </div>
+          <div class="suite-actions">
+            <a href="webtrace.html" class="btn-hero-primary" style="padding:11px 18px; font-size:13px; background:#10b981; color:#04130d;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Product Page
+            </a>
+            <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-hero-secondary" style="padding:11px 16px; font-size:13px;">
+              <i class="fa-brands fa-windows"></i> Setup (.exe)
+            </a>
+            <a href="downloads/HashScope-WebTrace-Portable.exe" class="btn-hero-secondary" style="padding:11px 16px; font-size:13px;">
+              <i class="fa-solid fa-usb"></i> Portable (.exe)
+            </a>
+            <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" class="btn-hero-secondary" style="padding:11px 16px; font-size:13px;">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Forensic Tools Expansion Grid -->
+      <div id="upcoming-tools" style="margin-top:20px;">
+        <div style="font-size:11px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); margin-bottom:12px;">
+          <i class="fa-solid fa-flask"></i> Upcoming HashScope Forensic Tools Pipeline (R&amp;D Expansion Slots)
+        </div>
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span class="nav-tool-badge roadmap">TOOL 03 • IN R&amp;D</span>
+              <i class="fa-solid fa-hard-drive" style="color:var(--amber);"></i>
+            </div>
+            <h4 style="color:#fff; margin-bottom:6px;">HashScope DiskCarve</h4>
+            <p style="font-size:12.5px; color:var(--text-secondary);">Unallocated disk cluster, MFT/USN Journal, and deleted file signature carver for NTFS, APFS, and ext4 images.</p>
+          </div>
+          <div class="roadmap-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span class="nav-tool-badge roadmap">TOOL 04 • IN R&amp;D</span>
+              <i class="fa-solid fa-memory" style="color:var(--purple);"></i>
+            </div>
+            <h4 style="color:#fff; margin-bottom:6px;">HashScope MemTrace</h4>
+            <p style="font-size:12.5px; color:var(--text-secondary);">Live volatile memory acquisition, process hollowing detection, and injected shellcode triage examiner.</p>
+          </div>
+          <div class="roadmap-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <span class="nav-tool-badge roadmap">TOOL 05 • IN R&amp;D</span>
+              <i class="fa-solid fa-file-shield" style="color:var(--cyan);"></i>
+            </div>
+            <h4 style="color:#fff; margin-bottom:6px;">HashScope RegPulse</h4>
+            <p style="font-size:12.5px; color:var(--text-secondary);">Windows Registry hive (`NTUSER.DAT`, `SYSTEM`, `SAM`, `Amcache`, `ShimCache`) timeline &amp; persistence analyzer.</p>
           </div>
         </div>
       </div>
@@ -665,11 +837,10 @@
       </div>
 
       <div class="footer-links">
-        <a href="#webtrace">WebTrace Examiner</a>
+        <a href="browser.html">Tool 1: HashScope Browser</a>
+        <a href="webtrace.html">Tool 2: HashScope WebTrace</a>
         <a href="wiki.html">Forensic Wiki</a>
         <a href="https://github.com/tojo54/hashscope/wiki" target="_blank">GitHub Wiki</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#simulator">Simulator</a>
         <a href="#sandbox">IOC Defanger</a>
         <a href="#triage">Triage Shelf</a>
         <a href="#download">Downloads</a>
@@ -679,12 +850,22 @@
     </div>
 
     <div class="footer-bottom">
-      HashScope Forensic Browser © 2026 TOJO P THOMAS. Released as Free & Open Source Software for the global SOC and digital forensics community.
+      HashScope Forensic Suite © 2026 TOJO P THOMAS. Released as Free &amp; Open Source Software for the global SOC and digital forensics community.
     </div>
   </footer>
 
   <!-- ================= INTERACTIVE SCRIPT ================= -->
   <script>
+    // Forensic Tools Dropdown Toggle
+    const dd = document.getElementById('forensicToolsDropdown');
+    if (dd) {
+      dd.querySelector('.nav-dropdown-trigger').addEventListener('click', (e) => {
+        e.stopPropagation();
+        dd.classList.toggle('open');
+      });
+      document.addEventListener('click', () => dd.classList.remove('open'));
+    }
+
     // 1. Live Interactive Browser Simulator Logic
     const tabData = {
       'tab-tor': {

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashScope WebTrace v2.4.0 | Free Browsing History Analysis &amp; Forensic Browser Examiner</title>
+  <meta name="description" content="Tool 02 of the HashScope Forensic Suite: HashScope WebTrace v2.4.0 — Free Browsing History Analysis &amp; Digital Forensic Browser Artifact Examiner for Chrome, Firefox, Edge, Safari, IE 10/11, Tor, Brave, Opera &amp; Vivaldi on Windows, macOS, and Linux (Portable &amp; Installer). Architected by TOJO P THOMAS.">
+  <meta name="keywords" content="free browsing history analysis, browsing history analysis, browser history examiner, HashScope WebTrace, recover deleted browser history, SQLite WAL carver, cached web page viewer, PLIST viewer, JSON viewer, Chrome Firefox Edge Safari IE Tor history analyzer, TOJO P THOMAS">
+  <link rel="icon" type="image/x-icon" href="assets/logo.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- ================= GLOBAL TOP NAVIGATION WITH TOOLS DROPDOWN ================= -->
+  <header class="site-nav">
+    <div class="nav-container">
+      <a href="index.html" class="brand-wrapper">
+        <img src="assets/logo.png" alt="HashScope Logo" class="brand-logo-img">
+        <span class="brand-name">HASH<span>SCOPE</span></span>
+        <span class="brand-badge" style="color:#34d399; border-color:rgba(16,185,129,0.35); background:rgba(16,185,129,0.12);">TOOL 02 • WEBTRACE v2.4.0</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html"><i class="fa-solid fa-grid-2"></i> Suite Home</a>
+
+        <!-- FORENSIC TOOLS DROPDOWN MENU -->
+        <div class="nav-dropdown" id="forensicToolsDropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> Forensic Tools <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-header">HashScope DFIR Software Suite</div>
+
+            <a href="browser.html" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  1. HashScope Browser <span class="nav-tool-badge">v1.2.0</span>
+                </div>
+                <div class="nav-dropdown-desc">Zero-Trace, 10 MB RAM Per-Tab Isolated Threat Hunting &amp; OSINT Web Browser</div>
+              </div>
+            </a>
+
+            <a href="webtrace.html" class="nav-dropdown-item active-tool">
+              <div class="nav-dropdown-icon emerald"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  2. HashScope WebTrace <span class="nav-tool-badge new">v2.4.0 NEW</span>
+                </div>
+                <div class="nav-dropdown-desc">Free Browsing History Analysis &amp; 14+ Artifact Examiner (Chrome, Firefox, Edge, Safari, IE, Tor)</div>
+              </div>
+            </a>
+
+            <div class="nav-dropdown-header" style="margin-top:6px;">Upcoming Forensic Tools (R&amp;D)</div>
+
+            <a href="index.html#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon amber"><i class="fa-solid fa-hard-drive"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  3. HashScope DiskCarve <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Unallocated Cluster &amp; File Signature Forensic Recovery Engine</div>
+              </div>
+            </a>
+
+            <a href="index.html#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon purple"><i class="fa-solid fa-memory"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  4. HashScope MemTrace <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Volatile RAM Dump &amp; Process Injection Triage Analyzer</div>
+              </div>
+            </a>
+
+            <a href="index.html#tools-directory" class="nav-dropdown-item" style="margin-top:4px; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+              <div class="nav-dropdown-info" style="text-align:center; color:var(--cyan); font-size:12px; font-weight:700;">
+                <i class="fa-solid fa-layer-group"></i> View All Forensic Suite Products &rarr;
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="#matrix">14+ Artifacts</a>
+        <a href="#features">Capabilities</a>
+        <a href="#locations">Data Locations</a>
+        <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Wiki</a>
+        <a href="#download">Downloads</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-nav-download">
+          <i class="fa-solid fa-download"></i> Download WebTrace v2.4.0
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero">
+      <div class="hero-pill">
+        <span class="pulse-dot"></span>
+        <span>TOOL 02 • Free Browsing History Analysis &amp; Digital Forensic Browser Examiner</span>
+      </div>
+
+      <h1 class="hero-title">
+        HashScope WebTrace v2.4.0 <br>
+        <span class="gradient-text">Extract, carve &amp; timeline 14+ browser artifacts.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Engineered by <strong>TOJO P THOMAS</strong> for Cyber Forensic Analysts, Incident Responders (DFIR), and Law Enforcement Investigators. Analyze <strong>Chrome, Firefox, Edge, IE 10/11, Safari, Tor Browser, Brave, Opera, and Vivaldi</strong> across <strong>Windows, macOS, and Linux</strong> in both <strong>Portable</strong> and <strong>Installer</strong> editions.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-hero-primary">
+          <i class="fa-brands fa-windows"></i> Windows Installer (Setup.exe)
+        </a>
+        <a href="downloads/HashScope-WebTrace-Portable.exe" class="btn-hero-secondary" style="border-color:#00f0ff; color:#00f0ff;">
+          <i class="fa-solid fa-usb"></i> Windows 1-File Portable (.exe)
+        </a>
+        <a href="downloads/HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run" class="btn-hero-secondary">
+          <i class="fa-brands fa-linux"></i> macOS &amp; Linux Portable (.run)
+        </a>
+        <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" rel="noopener" class="btn-hero-secondary" style="border-color:#10b981; color:#34d399;">
+          <i class="fa-brands fa-github"></i> GitHub Release Repo
+        </a>
+      </div>
+
+      <div class="hero-trust-row">
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> 14+ Forensic Artifact Categories</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> SQLite WAL, Freelist &amp; VSS Carving</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> Built-in Cached Page, JSON &amp; PLIST Viewers</div>
+        <div class="hero-trust-item"><i class="fa-solid fa-check text-cyan"></i> Read-Only SHA-256 &amp; MD5 Chain of Custody</div>
+      </div>
+
+      <!-- ================= INTERACTIVE WEBTRACE WORKSTATION STAGE ================= -->
+      <div class="browser-stage-wrapper" id="workstation-preview">
+        <div class="browser-mock">
+          <div class="mock-titlebar">
+            <div class="mock-window-controls">
+              <span class="m-dot red"></span>
+              <span class="m-dot yellow"></span>
+              <span class="m-dot green"></span>
+            </div>
+
+            <div class="mock-tabs" id="wtTabStrip">
+              <div class="mock-tab active" data-wttab="wt-visits">
+                <span class="mock-tab-badge direct">🌐 VISITS &amp; TIMELINE</span>
+                <span>Website Visits (6,762)</span>
+              </div>
+              <div class="mock-tab" data-wttab="wt-deleted">
+                <span class="mock-tab-badge tor">🧬 CARVED DELETED</span>
+                <span>WAL / Freelist / VSS (2,761)</span>
+              </div>
+              <div class="mock-tab" data-wttab="wt-cache">
+                <span class="mock-tab-badge vpn">🖼️ CACHE &amp; GALLERY</span>
+                <span>Cached Pages &amp; Images (960)</span>
+              </div>
+              <div class="mock-tab" data-wttab="wt-plist">
+                <span class="mock-tab-badge burp">📄 JSON / PLIST / HEX</span>
+                <span>Forensic Viewers</span>
+              </div>
+            </div>
+
+            <div class="mock-telemetry">
+              <span class="telemetry-item"><i class="fa-solid fa-clock text-cyan"></i> TZ: UTC+05:30 (DST Auto)</span>
+              <span class="telemetry-item"><i class="fa-solid fa-lock text-emerald"></i> Mode: Read-Only SHA-256</span>
+            </div>
+          </div>
+
+          <div class="mock-viewport">
+            <div class="mock-viewport-left">
+              <div class="mock-card-title">
+                <i class="fa-solid fa-magnifying-glass-chart text-cyan"></i> <span id="wtStageTitle">Multi-Browser Artifact Extraction Engine</span>
+              </div>
+              <div class="mock-stat-grid">
+                <div class="mock-stat-box">
+                  <div class="mock-stat-label">Active Module</div>
+                  <div class="mock-stat-value text-cyan" id="wtModName">Website Visits &amp; Transition Correlator</div>
+                </div>
+                <div class="mock-stat-box">
+                  <div class="mock-stat-label">Supported Browsers</div>
+                  <div class="mock-stat-value text-green" id="wtBrowsers">Chrome, Firefox, Edge, IE, Safari, Tor, Brave</div>
+                </div>
+                <div class="mock-stat-box">
+                  <div class="mock-stat-label">Timestamp Normalization</div>
+                  <div class="mock-stat-value text-purple" id="wtEpoch">WebKit (1601) / PRTime / CoreData / FILETIME</div>
+                </div>
+                <div class="mock-stat-box">
+                  <div class="mock-stat-label">Export Formats</div>
+                  <div class="mock-stat-value text-amber">Court PDF, XLSX, CSV, HTML, JSON</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-viewport-right">
+              <div class="mock-card-title">
+                <i class="fa-solid fa-microchip text-emerald"></i> Forensic Record &amp; Hex Inspector Stream
+              </div>
+              <div id="wtStreamLog" style="font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); line-height:1.7;">
+                [SHA-256] d9ef78e4350448e7... Verified Read-Only Copy of Chrome Default\History<br>
+                [VISIT] 2026-11-12 06:42:19 UTC | Chrome | Typed URL | https://mail.proton.me/u/0/inbox<br>
+                [SEARCH] Extracted Query: "how to wipe nvme mft records" (Engine: DuckDuckGo)<br>
+                [EMAIL] Extracted Account: suspect.ops@proton.me (Source: Autofill &amp; Login Data)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 14+ ARTIFACT MATRIX ================= -->
+    <section class="section" id="matrix">
+      <div class="section-head">
+        <span class="section-tag">COMPLETE FORENSIC COVERAGE</span>
+        <h2 class="section-title">14+ Browser Data Types Across All Major Browsers</h2>
+        <p class="section-subtitle">
+          Modeled on enterprise forensic standards (Foxton Forensics Browser History Examiner &amp; NirSoft Web Browser Tools) to extract every artifact from live workstations, mounted forensic images, and remote network shares.
+        </p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Forensic Data Type</th>
+              <th>Chrome</th>
+              <th>Firefox</th>
+              <th>Edge</th>
+              <th>IE 10/11</th>
+              <th>Safari</th>
+              <th class="col-highlight">Tor / Brave / Opera / Vivaldi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>1. Website Visits &amp; Transition Types</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ WebCacheV01</td><td class="text-good">✔ History.db</td><td class="col-highlight text-good">✔ Full Extraction</td></tr>
+            <tr><td><strong>2. Website Visits Interactive Timeline</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="col-highlight text-good">✔ Multi-Browser Histogram</td></tr>
+            <tr><td><strong>3. Searches (Engines, Social, Shopping)</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="col-highlight text-good">✔ Query &amp; Keyword Parser</td></tr>
+            <tr><td><strong>4. Downloads &amp; Redirect URL Chains</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ iedownload</td><td class="text-good">✔ Downloads.plist</td><td class="col-highlight text-good">✔ Full Chain Reconstruction</td></tr>
+            <tr><td><strong>5. Cookies &amp; Session Expiration</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Supported</td><td class="text-good">✔ binarycookies</td><td class="col-highlight text-good">✔ Full Host &amp; Path Audit</td></tr>
+            <tr><td><strong>6. Cached Files, Image Gallery &amp; Page Viewer</strong></td><td class="text-good">✔ Cache_Data</td><td class="text-good">✔ cache2/entries</td><td class="text-good">✔ Cache_Data</td><td class="text-good">✔ INetCache</td><td class="text-good">✔ Cache.db</td><td class="col-highlight text-good">✔ Offline Sandboxed Viewer</td></tr>
+            <tr><td><strong>7. Bookmarks &amp; Favicons &amp; Thumbnails</strong></td><td class="text-good">✔ Supported</td><td class="text-good">✔ places/favicons</td><td class="text-good">✔ Supported</td><td class="text-good">✔ Favorites .url</td><td class="text-good">✔ Bookmarks.plist</td><td class="col-highlight text-good">✔ Icon &amp; Top Sites Mapping</td></tr>
+            <tr><td><strong>8. Logins Metadata &amp; Form Autofill</strong></td><td class="text-good">✔ Login/Web Data</td><td class="text-good">✔ logins.json</td><td class="text-good">✔ Login/Web Data</td><td class="text-good">✔ Vault/WebCache</td><td class="text-good">✔ Form Autofill</td><td class="col-highlight text-good">✔ Account &amp; Usage Timestamps</td></tr>
+            <tr><td><strong>9. Session Data (SNSS / mozLz4 / PLIST)</strong></td><td class="text-good">✔ Session/Tabs</td><td class="text-good">✔ jsonlz4</td><td class="text-good">✔ Session/Tabs</td><td class="text-good">✔ Recovery</td><td class="text-good">✔ LastSession.plist</td><td class="col-highlight text-good">✔ Active &amp; Closed Tabs</td></tr>
+            <tr><td><strong>10. Browser Settings, Site Permissions &amp; Storage</strong></td><td class="text-good">✔ Preferences</td><td class="text-good">✔ prefs/perms</td><td class="text-good">✔ Preferences</td><td class="text-good">✔ Registry/DOM</td><td class="text-good">✔ PerSitePrefs</td><td class="col-highlight text-good">✔ Camera/Mic/Geo/LocalStorage</td></tr>
+            <tr><td><strong>11. Deleted History Recovery (WAL / Freelist / VSS)</strong></td><td class="text-good">✔ Carved</td><td class="text-good">✔ Carved</td><td class="text-good">✔ Carved</td><td class="text-good">✔ Carved</td><td class="text-good">✔ Carved</td><td class="col-highlight text-good">✔ Byte-Offset Unallocated Carver</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SPECIALIZED CAPABILITIES BENTO ================= -->
+    <section class="section" id="features">
+      <div class="section-head">
+        <span class="section-tag">ADVANCED FORENSIC WORKFLOWS</span>
+        <h2 class="section-title">Built-In Viewers, Deleted Recovery &amp; Acquisition Modes</h2>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card bento-col-6">
+          <div>
+            <div class="bento-icon purple"><i class="fa-solid fa-dna"></i></div>
+            <h3>Recover Deleted History (SQLite WAL, Freelist &amp; VSS)</h3>
+            <p>
+              Even after a user clears browser history, HashScope WebTrace scans unallocated SQLite B-Tree freelist pages, uncommitted Write-Ahead Log (<code>-wal</code>) frames, Rollback Journals, and Windows Volume Shadow Copies (<code>VSS</code>) to carve purged URLs and timestamps with exact hexadecimal byte offsets.
+            </p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-col-6">
+          <div>
+            <div class="bento-icon cyan"><i class="fa-solid fa-file-code"></i></div>
+            <h3>Cached Web Page Viewer, JSON Viewer &amp; Apple PLIST Viewer</h3>
+            <p>
+              Reconstruct cached HTML pages in a sandboxed offline viewer, browse cached images in the built-in visual gallery, and inspect raw <code>Bookmarks</code>, <code>Preferences</code>, <code>sessionstore.jsonlz4</code>, and Apple binary <code>bplist00</code> files without third-party tools.
+            </p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon emerald"><i class="fa-solid fa-network-wired"></i></div>
+            <h3>4 Evidence Acquisition Modes</h3>
+            <p>
+              <strong>1. Local Live System</strong> (bypasses OS locks), <strong>2. External Drive / Mounted Image</strong> (<code>E01</code>/<code>VHDX</code>), <strong>3. Remote Network PC</strong> (<code>\\Host\C$</code>), and <strong>4. Manual File Loader</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon amber"><i class="fa-solid fa-clock"></i></div>
+            <h3>Time Zone &amp; DST Configuration</h3>
+            <p>
+              Converts WebKit (1601), PRTime (1970), Cocoa CoreData (2001), and Windows FILETIME timestamps into any target IANA Time Zone with automatic Daylight Saving Time rules.
+            </p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-col-4">
+          <div>
+            <div class="bento-icon crimson"><i class="fa-solid fa-file-pdf"></i></div>
+            <h3>Court-Admissible Report Builder</h3>
+            <p>
+              Build formatted <strong>PDF / Printable HTML Reports</strong> or export filtered records to <strong>XLSX, CSV, and JSON</strong> complete with SHA-256 and MD5 Chain-of-Custody tables.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BROWSER DATA LOCATIONS REFERENCE ================= -->
+    <section class="section" id="locations">
+      <div class="section-head">
+        <span class="section-tag">FORENSIC ARTIFACT PATHS</span>
+        <h2 class="section-title">Default Browser History Locations Reference</h2>
+      </div>
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Browser</th>
+              <th>Windows Path</th>
+              <th>macOS Path</th>
+              <th>Linux Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Chrome</strong></td>
+              <td><code>%LOCALAPPDATA%\Google\Chrome\User Data\Default\</code></td>
+              <td><code>~/Library/Application Support/Google/Chrome/Default/</code></td>
+              <td><code>~/.config/google-chrome/Default/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Microsoft Edge</strong></td>
+              <td><code>%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\</code></td>
+              <td><code>~/Library/Application Support/Microsoft Edge/Default/</code></td>
+              <td><code>~/.config/microsoft-edge/Default/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Mozilla Firefox</strong></td>
+              <td><code>%APPDATA%\Mozilla\Firefox\Profiles\*.default-release\</code></td>
+              <td><code>~/Library/Application Support/Firefox/Profiles/</code></td>
+              <td><code>~/.mozilla/firefox/*.default-release/</code></td>
+            </tr>
+            <tr>
+              <td><strong>Apple Safari</strong></td>
+              <td><em>Mounted macOS / iOS Image Support</em></td>
+              <td><code>~/Library/Safari/History.db &amp; Bookmarks.plist</code></td>
+              <td><em>Mounted macOS / iOS Image Support</em></td>
+            </tr>
+            <tr>
+              <td><strong>IE 10 / 11</strong></td>
+              <td><code>%LOCALAPPDATA%\Microsoft\Windows\WebCache\WebCacheV01.dat</code></td>
+              <td><em>Windows Artifact</em></td>
+              <td><em>Windows Artifact</em></td>
+            </tr>
+            <tr>
+              <td><strong>Tor Browser</strong></td>
+              <td><code>Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\</code></td>
+              <td><code>~/tor-browser/Browser/TorBrowser/Data/Browser/</code></td>
+              <td><code>~/tor-browser/Browser/TorBrowser/Data/Browser/</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= DOWNLOAD HUB ================= -->
+    <section class="section" id="download">
+      <div class="section-head">
+        <span class="section-tag">TOOL 02 DEPLOYMENT PACKAGES</span>
+        <h2 class="section-title">Download HashScope WebTrace v2.4.0 (Portable &amp; Installer)</h2>
+      </div>
+
+      <div class="downloads-grid">
+        <div class="dl-card highlight">
+          <span class="dl-tag-featured">WINDOWS 10 / 11 / SERVER (x64)</span>
+          <div class="dl-icon"><i class="fa-brands fa-windows"></i></div>
+          <h3>Windows Installer &amp; Portable</h3>
+          <p>Native standalone Windows executables. Run the GUI Setup Wizard or launch the zero-install Portable edition from a USB drive.</p>
+          <div class="dl-btn-stack">
+            <a href="downloads/HashScope-WebTrace-Setup.exe" class="btn-dl-item primary">
+              <span><i class="fa-solid fa-download"></i> HashScope-WebTrace-Setup.exe</span>
+              <span class="mono">Installer</span>
+            </a>
+            <a href="downloads/HashScope-WebTrace-Portable.exe" class="btn-dl-item secondary">
+              <span><i class="fa-solid fa-usb"></i> HashScope-WebTrace-Portable.exe</span>
+              <span class="mono">Portable</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-icon"><i class="fa-brands fa-apple"></i> <i class="fa-brands fa-linux"></i></div>
+          <h3>macOS &amp; Linux Portable Bundle</h3>
+          <p>Universal self-extracting portable forensic bundle for macOS (Intel/Apple Silicon) and Linux (Kali, Ubuntu, Debian, Arch).</p>
+          <div class="dl-btn-stack">
+            <a href="downloads/HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run" class="btn-dl-item primary">
+              <span><i class="fa-solid fa-terminal"></i> macOS &amp; Linux Portable (.run)</span>
+              <span class="mono">Universal</span>
+            </a>
+            <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis/releases/tag/v2.4.0" target="_blank" class="btn-dl-item secondary">
+              <span><i class="fa-brands fa-github"></i> View Release v2.4.0 on GitHub</span>
+              <span class="mono">Checksums</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checksum Verification -->
+      <div class="hash-verify-box" style="margin-top:28px;">
+        <div class="hash-verify-title">
+          <i class="fa-solid fa-fingerprint text-cyan"></i> Cryptographic SHA-256 Package Integrity Verification
+        </div>
+        <div class="hash-row">
+          <span class="hash-filename">HashScope-WebTrace-Setup.exe (Windows Installer)</span>
+          <span class="hash-string">CE50C09943E46DC0AA4333A9B6D4BE933BE10FBE54C1E39197809BDB1D0F9EAB</span>
+        </div>
+        <div class="hash-row">
+          <span class="hash-filename">HashScope-WebTrace-Portable.exe (Windows Portable)</span>
+          <span class="hash-string">D9EF78E4350448E72AB5714177DBCE59501072CFF00DD3557548B10B26073E58</span>
+        </div>
+        <div class="hash-row">
+          <span class="hash-filename">HashScope-WebTrace-v2.4.0-macOS-Linux-Portable.run</span>
+          <span class="hash-string">92BE585796E928496C23E21729CF2548BC25DA7F57B5617EAA5F453E37DCBF21</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="HashScope Logo" style="width:28px; height:28px;">
+        <span style="font-weight:700; color:#fff;">HashScope Forensic Suite</span>
+        <span class="brand-badge">Tool 02 • WebTrace v2.4.0</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Suite Home</a>
+        <a href="browser.html">Tool 1: HashScope Browser</a>
+        <a href="webtrace.html">Tool 2: HashScope WebTrace</a>
+        <a href="wiki.html">Forensic Wiki</a>
+        <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank">WebTrace GitHub</a>
+        <a href="https://medium.com/@tojopthomas" target="_blank">TOJO P THOMAS</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      HashScope WebTrace v2.4.0 © 2026 TOJO P THOMAS (Cyber Forensic Analyst | Investigator | Researcher).
+    </div>
+  </footer>
+
+  <script>
+    const dd = document.getElementById('forensicToolsDropdown');
+    if (dd) {
+      dd.querySelector('.nav-dropdown-trigger').addEventListener('click', (e) => {
+        e.stopPropagation();
+        dd.classList.toggle('open');
+      });
+      document.addEventListener('click', () => dd.classList.remove('open'));
+    }
+
+    const wtTabs = {
+      'wt-visits': {
+        mod: 'Website Visits & Transition Correlator',
+        browsers: 'Chrome, Firefox, Edge, IE, Safari, Tor, Brave',
+        epoch: 'WebKit (1601) / PRTime / CoreData / FILETIME',
+        log: '[SHA-256] d9ef78e4350448e7... Verified Read-Only Copy of Chrome Default\\History<br>[VISIT] 2026-11-12 06:42:19 UTC | Chrome | Typed URL | https://mail.proton.me/u/0/inbox<br>[SEARCH] Extracted Query: "how to wipe nvme mft records" (Engine: DuckDuckGo)<br>[EMAIL] Extracted Account: suspect.ops@proton.me (Source: Autofill & Login Data)'
+      },
+      'wt-deleted': {
+        mod: 'SQLite WAL, Unallocated Freelist & VSS Carver',
+        browsers: 'All SQLite 3 & ESENT WebCacheV01 Databases',
+        epoch: 'Byte-Offset Raw Cell & Frame Carving',
+        log: '[CARVER] Scanning History-wal & Unallocated B-Tree Leaf Pages (0x0D)...<br>[RECOVERED] Offset 0x0014A820 | https://mega.nz/folder/exfil-archive-2026<br>[RECOVERED] Offset 0x0019C110 | Tor Browser places.sqlite-wal | http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion<br>[STATUS] 2,761 purged records carved and verified.'
+      },
+      'wt-cache': {
+        mod: 'Sandboxed Cached Web Page Viewer & Image Gallery',
+        browsers: 'Chromium SimpleCache (data_*/f_*) & Firefox cache2',
+        epoch: 'HTTP Response Header & MIME Carve',
+        log: '[CACHE] Parsed 960 cached entries across Chrome, Edge & Firefox.<br>[IMAGE GALLERY] Extracted 412 JPEG/PNG/WebP thumbnails with SHA-256 hashes.<br>[PAGE VIEWER] Reconstructed offline HTML snapshot (Scripts disabled, network isolated).<br>[HEADERS] HTTP/1.1 200 OK | Content-Type: text/html; charset=utf-8'
+      },
+      'wt-plist': {
+        mod: 'Built-In JSON Tree, Apple bplist00 PLIST & Hex Viewer',
+        browsers: 'Safari Bookmarks.plist, Firefox jsonlz4, Chrome Preferences',
+        epoch: '16-Byte Hexadecimal & ASCII Inspector',
+        log: '[PLIST] Decoded Apple Binary Property List (bplist00) -> Safari Bookmarks.plist<br>[MOZLZ4] Decompressed Firefox sessionstore.jsonlz4 (5,067 session entries)<br>[HEX] 00000000: 53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33 00  |SQLite format 3.|<br>[CUSTODY] MD5 & SHA-256 Chain-of-Custody Manifest Ready for PDF/XLSX Export.'
+      }
+    };
+
+    document.querySelectorAll('#wtTabStrip .mock-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('#wtTabStrip .mock-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const d = wtTabs[tab.dataset.wttab];
+        if (d) {
+          document.getElementById('wtModName').textContent = d.mod;
+          document.getElementById('wtBrowsers').textContent = d.browsers;
+          document.getElementById('wtEpoch').textContent = d.epoch;
+          document.getElementById('wtStreamLog').innerHTML = d.log;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -158,11 +158,68 @@
       </a>
 
       <nav class="nav-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="index.html#webtrace" style="color:#38bdf8; font-weight:700;"><i class="fa-solid fa-magnifying-glass-chart"></i> WebTrace v2.4.0</a>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Suite Home</a>
+
+        <!-- FORENSIC TOOLS DROPDOWN MENU -->
+        <div class="nav-dropdown" id="forensicToolsDropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+            <i class="fa-solid fa-toolbox"></i> Forensic Tools <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="nav-dropdown-menu">
+            <div class="nav-dropdown-header">HashScope DFIR Software Suite</div>
+
+            <a href="browser.html" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  1. HashScope Browser <span class="nav-tool-badge">v1.2.0</span>
+                </div>
+                <div class="nav-dropdown-desc">Zero-Trace, 10 MB RAM Per-Tab Isolated Threat Hunting &amp; OSINT Web Browser</div>
+              </div>
+            </a>
+
+            <a href="webtrace.html" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon emerald"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  2. HashScope WebTrace <span class="nav-tool-badge new">v2.4.0 NEW</span>
+                </div>
+                <div class="nav-dropdown-desc">Free Browsing History Analysis &amp; 14+ Artifact Examiner (Chrome, Firefox, Edge, Safari, IE, Tor)</div>
+              </div>
+            </a>
+
+            <div class="nav-dropdown-header" style="margin-top:6px;">Upcoming Forensic Tools (R&amp;D)</div>
+
+            <a href="index.html#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon amber"><i class="fa-solid fa-hard-drive"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  3. HashScope DiskCarve <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Unallocated Cluster &amp; File Signature Forensic Recovery Engine</div>
+              </div>
+            </a>
+
+            <a href="index.html#upcoming-tools" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon purple"><i class="fa-solid fa-memory"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">
+                  4. HashScope MemTrace <span class="nav-tool-badge roadmap">ROADMAP</span>
+                </div>
+                <div class="nav-dropdown-desc">Volatile RAM Dump &amp; Process Injection Triage Analyzer</div>
+              </div>
+            </a>
+
+            <a href="index.html#tools-directory" class="nav-dropdown-item" style="margin-top:4px; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+              <div class="nav-dropdown-info" style="text-align:center; color:var(--cyan); font-size:12px; font-weight:700;">
+                <i class="fa-solid fa-layer-group"></i> View All Forensic Suite Products &rarr;
+              </div>
+            </a>
+          </div>
+        </div>
+
         <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Forensic Wiki</a>
         <a href="https://github.com/tojo54/hashscope/wiki" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Wiki</a>
-        <a href="https://github.com/tojo54/HashScope-WebTrace-Browser-History-Analysis" target="_blank" rel="noopener"><i class="fa-solid fa-code-branch"></i> WebTrace Repo</a>
         <a href="index.html#download">Downloads</a>
       </nav>
 
