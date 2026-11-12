@@ -29,10 +29,10 @@
       </a>
 
       <nav class="nav-links">
-        <a href="index.html" style="color:#fff; font-weight:700;"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="index.html" class="active-nav"><i class="fa-solid fa-house"></i> Home</a>
 
-        <!-- FORENSIC TOOLS DROPDOWN MENU -->
-        <div class="nav-dropdown" id="forensicToolsDropdown">
+        <!-- 1. FORENSIC TOOLS DROPDOWN -->
+        <div class="nav-dropdown">
           <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
             <i class="fa-solid fa-toolbox"></i> Forensic Tools <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
           </button>
@@ -43,7 +43,7 @@
               <div class="nav-dropdown-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
               <div class="nav-dropdown-info">
                 <div class="nav-dropdown-title">
-                  1. HashScope Browser <span class="nav-tool-badge">v1.2.0</span>
+                  01. HashScope Browser <span class="nav-tool-badge">v1.2.0</span>
                 </div>
                 <div class="nav-dropdown-desc">Zero-Trace, 10 MB RAM Per-Tab Isolated Threat Hunting &amp; OSINT Web Browser</div>
               </div>
@@ -53,7 +53,7 @@
               <div class="nav-dropdown-icon emerald"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
               <div class="nav-dropdown-info">
                 <div class="nav-dropdown-title">
-                  2. HashScope WebTrace <span class="nav-tool-badge new">v2.4.0 NEW</span>
+                  02. HashScope WebTrace <span class="nav-tool-badge new">v2.4.0 NEW</span>
                 </div>
                 <div class="nav-dropdown-desc">Free Browsing History Analysis &amp; 14+ Artifact Examiner (Chrome, Firefox, Edge, Safari, IE, Tor)</div>
               </div>
@@ -65,7 +65,7 @@
               <div class="nav-dropdown-icon amber"><i class="fa-solid fa-hard-drive"></i></div>
               <div class="nav-dropdown-info">
                 <div class="nav-dropdown-title">
-                  3. HashScope DiskCarve <span class="nav-tool-badge roadmap">ROADMAP</span>
+                  03. HashScope DiskCarve <span class="nav-tool-badge roadmap">ROADMAP</span>
                 </div>
                 <div class="nav-dropdown-desc">Unallocated Cluster &amp; File Signature Forensic Recovery Engine</div>
               </div>
@@ -75,7 +75,7 @@
               <div class="nav-dropdown-icon purple"><i class="fa-solid fa-memory"></i></div>
               <div class="nav-dropdown-info">
                 <div class="nav-dropdown-title">
-                  4. HashScope MemTrace <span class="nav-tool-badge roadmap">ROADMAP</span>
+                  04. HashScope MemTrace <span class="nav-tool-badge roadmap">ROADMAP</span>
                 </div>
                 <div class="nav-dropdown-desc">Volatile RAM Dump &amp; Process Injection Triage Analyzer</div>
               </div>
@@ -89,12 +89,51 @@
           </div>
         </div>
 
-        <a href="#simulator">Simulator</a>
-        <a href="#sandbox">IOC Defanger</a>
-        <a href="#triage">Triage Shelf</a>
-        <a href="wiki.html" style="color:#10b981; font-weight:700;"><i class="fa-solid fa-book-atlas"></i> Forensic Wiki</a>
-        <a href="#download">Downloads</a>
-        <a href="#creator">Architect</a>
+        <!-- 2. ONLINE LAB & UTILITIES DROPDOWN -->
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger subtle-trigger" aria-expanded="false">
+            <i class="fa-solid fa-flask"></i> Online Lab <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
+          <div class="nav-dropdown-menu" style="width:350px;">
+            <div class="nav-dropdown-header">Interactive Web Forensic Utilities</div>
+
+            <a href="#simulator" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon purple"><i class="fa-solid fa-network-wired"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">Live Multi-Route Browser Simulator</div>
+                <div class="nav-dropdown-desc">Test Tor (9050), WireGuard (1080), and Burp (8080) per-tab isolation</div>
+              </div>
+            </a>
+
+            <a href="#sandbox" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon cyan"><i class="fa-solid fa-code"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">IOC URL &amp; Email Defanger</div>
+                <div class="nav-dropdown-desc">Neutralize malicious links before sharing in SOC reports</div>
+              </div>
+            </a>
+
+            <a href="#triage" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon emerald"><i class="fa-solid fa-terminal"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">DFIR Incident Triage Shelf</div>
+                <div class="nav-dropdown-desc">Curated Windows, Linux, and Event ID (4625/4688/1102) commands</div>
+              </div>
+            </a>
+
+            <a href="#comparison" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon amber"><i class="fa-solid fa-scale-balanced"></i></div>
+              <div class="nav-dropdown-info">
+                <div class="nav-dropdown-title">Forensic Browser Benchmark</div>
+                <div class="nav-dropdown-desc">Standard Chrome/Edge vs. Incognito vs. HashScope</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="wiki.html"><i class="fa-solid fa-book-atlas"></i> Wiki &amp; Docs</a>
+        <a href="#download"><i class="fa-solid fa-download"></i> Downloads</a>
+        <a href="#creator"><i class="fa-solid fa-user-shield"></i> Architect</a>
       </nav>
 
       <div class="nav-actions">
@@ -856,15 +895,21 @@
 
   <!-- ================= INTERACTIVE SCRIPT ================= -->
   <script>
-    // Forensic Tools Dropdown Toggle
-    const dd = document.getElementById('forensicToolsDropdown');
-    if (dd) {
-      dd.querySelector('.nav-dropdown-trigger').addEventListener('click', (e) => {
-        e.stopPropagation();
-        dd.classList.toggle('open');
-      });
-      document.addEventListener('click', () => dd.classList.remove('open'));
-    }
+    // Forensic Tools & Online Lab Dropdown Toggle
+    document.querySelectorAll('.nav-dropdown').forEach(drop => {
+      const btn = drop.querySelector('.nav-dropdown-trigger');
+      if (btn) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const wasOpen = drop.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+          if (!wasOpen) drop.classList.add('open');
+        });
+      }
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    });
 
     // 1. Live Interactive Browser Simulator Logic
     const tabData = {
